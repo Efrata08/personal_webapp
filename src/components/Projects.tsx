@@ -120,7 +120,26 @@ export default function Projects() {
         </p>
 
         {/* Centered card wrapper */}
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative' }}>
+
+          {/* Left ribbon — absolutely positioned, doesn't affect card size */}
+          <img
+            src="/ribbon-left.svg"
+            alt=""
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              left: -60,
+              top: '50%',
+              transform: 'translateY(-50%) rotate(15deg) scaleX(-1)',
+              width: 80,
+              height: 200,
+              objectFit: 'contain',
+              filter: 'invert(1) sepia(1) saturate(500%) hue-rotate(5deg) brightness(0.9)',
+              zIndex: 1,
+              pointerEvents: 'none',
+            }}
+          />
 
           {/* Slider — overflow hidden, border on this element */}
           <div style={{
@@ -236,6 +255,25 @@ export default function Projects() {
               ))}
             </div>
           </div>
+
+          {/* Right ribbon — absolutely positioned, doesn't affect card size */}
+          <img
+            src="/ribbon-right.svg"
+            alt=""
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              right: -60,
+              top: '50%',
+              transform: 'translateY(-50%) rotate(-15deg)',
+              width: 80,
+              height: 200,
+              objectFit: 'contain',
+              filter: 'invert(1) sepia(1) saturate(500%) hue-rotate(5deg) brightness(0.9)',
+              zIndex: 1,
+              pointerEvents: 'none',
+            }}
+          />
 
           {/* Navigation */}
           <div style={{
