@@ -137,7 +137,7 @@ export default function About() {
       <section
         ref={sectionRef}
         className="about-section"
-        style={{ backgroundColor: '#E8DCC8', borderTop: '1px solid #C4B090' }}
+        style={{ backgroundColor: '#E8DCC8' }}
       >
         <div
           className="about-inner"

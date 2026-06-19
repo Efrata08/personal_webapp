@@ -8,7 +8,7 @@ const PROJECTS = [
     title: 'Fa-ray',
     titleSuffix: ' ፍሬ',
     description:
-      'Offline-first inventory management for small pharmacies in Ethiopia. Amharic-first UI, no internet required. Built because the places that need software most are usually the last to get it.',
+      'An offline-first inventory management platform for small independent pharmacies in Ethiopia. It works entirely without internet, operates in Amharic, and is designed for low-end Android devices. Owners can track stock levels, record sales, receive low-stock alerts, and generate customer sale records — all in a single tap flow optimized for busy counter environments. Built through Haverford College\'s incubator program.',
     tags: ['React Native', 'Expo', 'TypeScript'],
     linkLabel: 'GitHub',
   },
@@ -105,177 +105,185 @@ export default function Projects() {
       <section
         ref={sectionRef}
         className="projects-section"
-        style={{ backgroundColor: '#E8DCC8', borderTop: '1px solid #C4B090', padding: '56px 0' }}
+        style={{ backgroundColor: '#E8DCC8', padding: '56px' }}
       >
         {/* Eyebrow */}
         <p style={{
           fontFamily: 'var(--font-lora), Georgia, serif',
           fontStyle: 'italic',
-          fontSize: 12,
+          fontSize: 13,
           letterSpacing: '0.14em',
           color: '#8A7A64',
-          padding: '0 56px',
           margin: '0 0 32px 0',
         }}>
           selected work
         </p>
 
-        {/* Sliding card track */}
-        <div style={{ overflow: 'hidden', width: '100%' }}>
+        {/* Centered card wrapper */}
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+
+          {/* Slider — overflow hidden, border on this element */}
           <div style={{
-            display: 'flex',
-            width: `${PROJECTS.length * 100}%`,
-            transform: `translateX(-${(current / PROJECTS.length) * 100}%)`,
-            transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1)',
+            overflow: 'hidden',
+            border: '1px solid #C4B090',
+            borderRadius: 2,
           }}>
-            {PROJECTS.map((project, i) => (
-              <div
-                key={i}
-                style={{
-                  width: `${100 / PROJECTS.length}%`,
-                  flex: '0 0 auto',
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                }}
-              >
-                {/* Left: text */}
-                <div style={{
-                  backgroundColor: '#E8DCC8',
-                  padding: '40px 56px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}>
-                  <p style={{
-                    fontFamily: 'var(--font-lora), Georgia, serif',
-                    fontSize: 11,
-                    letterSpacing: '0.16em',
-                    color: '#B0A080',
-                    margin: '0 0 8px 0',
+            {/* Track */}
+            <div style={{
+              display: 'flex',
+              transform: `translateX(-${current * 100}%)`,
+              transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1)',
+            }}>
+              {PROJECTS.map((project, i) => (
+                <div
+                  key={i}
+                  style={{
+                    flex: '0 0 100%',
+                    width: '100%',
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                  }}
+                >
+                  {/* Left: text */}
+                  <div style={{
+                    backgroundColor: '#E8DCC8',
+                    padding: '48px 56px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    boxSizing: 'border-box',
+                    minWidth: 0,
                   }}>
-                    {project.number}
-                  </p>
+                    <p style={{
+                      fontFamily: 'var(--font-lora), Georgia, serif',
+                      fontSize: 13,
+                      letterSpacing: '0.16em',
+                      color: '#B0A080',
+                      margin: '0 0 8px 0',
+                    }}>
+                      {project.number}
+                    </p>
 
-                  <h3 style={{
-                    fontFamily: 'var(--font-playfair), Georgia, serif',
-                    fontStyle: 'italic',
-                    fontSize: 36,
-                    lineHeight: 1.1,
-                    color: '#0F2440',
-                    margin: '0 0 20px 0',
-                  }}>
-                    {project.title}
-                    {project.titleSuffix && (
-                      <span style={{ color: '#D4A020' }}>{project.titleSuffix}</span>
-                    )}
-                  </h3>
+                    <h3 style={{
+                      fontFamily: 'var(--font-playfair), Georgia, serif',
+                      fontStyle: 'italic',
+                      fontSize: 36,
+                      lineHeight: 1.1,
+                      color: '#0F2440',
+                      margin: '0 0 20px 0',
+                    }}>
+                      {project.title}
+                      {project.titleSuffix && (
+                        <span style={{ color: '#D4A020' }}>{project.titleSuffix}</span>
+                      )}
+                    </h3>
 
-                  <p style={{
-                    fontFamily: 'var(--font-lora), Georgia, serif',
-                    fontSize: 13,
-                    lineHeight: 1.85,
-                    color: '#5A4A38',
-                    maxWidth: 480,
-                    flex: 1,
-                    margin: '0 0 24px 0',
-                  }}>
-                    {project.description}
-                  </p>
+                    <p style={{
+                      fontFamily: 'var(--font-lora), Georgia, serif',
+                      fontSize: 19,
+                      lineHeight: 1.85,
+                      color: '#5A4A38',
+                      flex: 1,
+                      margin: '0 0 24px 0',
+                    }}>
+                      {project.description}
+                    </p>
 
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                    {project.tags.map(tag => (
-                      <span key={tag} style={{
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                      {project.tags.map(tag => (
+                        <span key={tag} style={{
+                          fontFamily: 'var(--font-lora), Georgia, serif',
+                          fontSize: 12,
+                          border: '1px solid #C4B090',
+                          padding: '4px 12px',
+                          borderRadius: 20,
+                          color: '#0F2440',
+                        }}>
+                          {tag}
+                        </span>
+                      ))}
+                      <span style={{
                         fontFamily: 'var(--font-lora), Georgia, serif',
-                        fontSize: 10,
-                        border: '1px solid #C4B090',
+                        fontSize: 12,
+                        border: '1px solid #D4A020',
                         padding: '4px 12px',
                         borderRadius: 20,
-                        color: '#0F2440',
+                        color: '#D4A020',
                       }}>
-                        {tag}
+                        {project.linkLabel}
                       </span>
-                    ))}
-                    <span style={{
+                    </div>
+                  </div>
+
+                  {/* Right: navy placeholder */}
+                  <div style={{
+                    backgroundColor: '#0F2440',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    minWidth: 0,
+                  }}>
+                    <p style={{
                       fontFamily: 'var(--font-lora), Georgia, serif',
-                      fontSize: 10,
-                      border: '1px solid #D4A020',
-                      padding: '4px 12px',
-                      borderRadius: 20,
-                      color: '#D4A020',
+                      fontStyle: 'italic',
+                      fontSize: 12,
+                      color: '#3A5470',
+                      margin: 0,
                     }}>
-                      {project.linkLabel}
-                    </span>
+                      screenshot coming soon
+                    </p>
                   </div>
                 </div>
-
-                {/* Right: image placeholder */}
-                <div style={{
-                  backgroundColor: '#0F2440',
-                  height: 340,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                  <p style={{
-                    fontFamily: 'var(--font-lora), Georgia, serif',
-                    fontStyle: 'italic',
-                    fontSize: 12,
-                    color: '#3A5470',
-                    margin: 0,
-                  }}>
-                    screenshot coming soon
-                  </p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Navigation */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '24px 56px 0',
-        }}>
-          {/* Dot indicators */}
-          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-            {PROJECTS.map((_, i) => (
+          {/* Navigation */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            paddingTop: 24,
+          }}>
+            {/* Dot indicators */}
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              {PROJECTS.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  aria-label={`Go to project ${i + 1}`}
+                  style={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: '50%',
+                    border: 'none',
+                    background: i === current ? '#0F2440' : '#C4B090',
+                    cursor: 'pointer',
+                    padding: 0,
+                    transition: 'background 0.2s ease',
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Arrow buttons */}
+            <div style={{ display: 'flex', gap: 8 }}>
               <button
-                key={i}
-                onClick={() => setCurrent(i)}
-                aria-label={`Go to project ${i + 1}`}
-                style={{
-                  width: 8,
-                  height: 8,
-                  borderRadius: '50%',
-                  border: 'none',
-                  background: i === current ? '#0F2440' : '#C4B090',
-                  cursor: 'pointer',
-                  padding: 0,
-                  transition: 'background 0.2s ease',
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Arrow buttons */}
-          <div style={{ display: 'flex', gap: 8 }}>
-            <button
-              className="nav-arrow"
-              onClick={prev}
-              disabled={current === 0}
-              aria-label="Previous project"
-            >
-              ←
-            </button>
-            <button
-              className="nav-arrow"
-              onClick={next}
-              disabled={current === PROJECTS.length - 1}
-              aria-label="Next project"
-            >
-              →
-            </button>
+                className="nav-arrow"
+                onClick={prev}
+                disabled={current === 0}
+                aria-label="Previous project"
+              >
+                ←
+              </button>
+              <button
+                className="nav-arrow"
+                onClick={next}
+                disabled={current === PROJECTS.length - 1}
+                aria-label="Next project"
+              >
+                →
+              </button>
+            </div>
           </div>
         </div>
       </section>
