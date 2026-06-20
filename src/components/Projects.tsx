@@ -120,32 +120,18 @@ export default function Projects() {
         </p>
 
         {/* Centered card wrapper */}
-        <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
 
-          {/* Left ribbon — absolutely positioned, doesn't affect card size */}
-          <img
-            src="/ribbon-left.svg"
-            alt=""
-            aria-hidden="true"
-            style={{
-              position: 'absolute',
-              left: -60,
-              top: '50%',
-              transform: 'translateY(-50%) rotate(15deg) scaleX(-1)',
-              width: 80,
-              height: 200,
-              objectFit: 'contain',
-              filter: 'invert(1) sepia(1) saturate(500%) hue-rotate(5deg) brightness(0.9)',
-              zIndex: 1,
-              pointerEvents: 'none',
-            }}
-          />
+          {/* Card + ribbons wrapper */}
+          <div style={{ position: 'relative' }}>
 
-          {/* Slider — overflow hidden, border on this element */}
+{/* Slider — overflow hidden, border on this element */}
           <div style={{
             overflow: 'hidden',
             border: '1px solid #C4B090',
             borderRadius: 2,
+            position: 'relative',
+            zIndex: 1,
           }}>
             {/* Track */}
             <div style={{
@@ -256,24 +242,8 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* Right ribbon — absolutely positioned, doesn't affect card size */}
-          <img
-            src="/ribbon-right.svg"
-            alt=""
-            aria-hidden="true"
-            style={{
-              position: 'absolute',
-              right: -60,
-              top: '50%',
-              transform: 'translateY(-50%) rotate(-15deg)',
-              width: 80,
-              height: 200,
-              objectFit: 'contain',
-              filter: 'invert(1) sepia(1) saturate(500%) hue-rotate(5deg) brightness(0.9)',
-              zIndex: 1,
-              pointerEvents: 'none',
-            }}
-          />
+
+</div>{/* end card + ribbons wrapper */}
 
           {/* Navigation */}
           <div style={{

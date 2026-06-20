@@ -53,21 +53,14 @@ export default function Hero() {
           from { opacity: 0; transform: translateY(10px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        @keyframes unrollScroll {
-          from { transform: scaleY(0); }
-          to   { transform: scaleY(1); }
-        }
-
         .hero-fade-1        { animation: fadeUp 0.8s ease 0.2s both; }
         .hero-fade-2        { animation: fadeUp 0.8s ease 0.6s both; }
         .hero-fade-3        { animation: fadeUp 1s   ease 1s   both; }
         .hero-fade-r        { animation: fadeUp 0.8s ease 1s   both; }
-        .hero-scroll-unroll { animation: unrollScroll 1.4s ease-out 0.5s both; transform-origin: top center; }
         .hero-scroll-text   { animation: fadeUp 0.8s ease 2s both; }
 
         @media (max-width: 768px) {
           .hero-grid       { grid-template-columns: 1fr !important; }
-          .hero-scroll-col { display: none !important; }
           .hero-left       { align-items: center !important; text-align: center; padding-left: 0 !important; }
           .hero-right      { justify-content: center; margin-top: 48px; }
         }
@@ -94,57 +87,10 @@ export default function Hero() {
             width: '100%',
             margin: '0 auto',
             display: 'grid',
-            gridTemplateColumns: 'auto 1fr 1fr',
+            gridTemplateColumns: '1fr 1fr',
             alignItems: 'center',
           }}
         >
-          {/* ─── FAR LEFT: SCROLL ─── */}
-          <div
-            className="hero-scroll-col"
-            style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 6, paddingLeft: 0 }}
-          >
-            {/* Outer wrapper: actual visual size after rotation — 70×260 */}
-            <div
-              className="hero-scroll-unroll"
-              style={{ width: 70, height: 260, flexShrink: 0 }}
-            >
-              {/* Inner clip: hides overflow from the rotated img */}
-              <div style={{ position: 'relative', width: 70, height: 260, overflow: 'hidden' }}>
-                <img
-                  src="/scroll.svg"
-                  alt=""
-                  aria-hidden="true"
-                  style={{
-                    width: 260,
-                    height: 70,
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%) rotate(90deg)',
-                    filter: 'sepia(20%) brightness(0.88) saturate(0.5) opacity(0.85)',
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* Vertical text — reads bottom to top */}
-            <span
-              className="hero-scroll-text"
-              style={{
-                writingMode: 'vertical-rl',
-                transform: 'rotate(180deg)',
-                fontFamily: 'var(--font-lora), Georgia, serif',
-                fontStyle: 'italic',
-                fontSize: 10,
-                color: '#8A7A64',
-                letterSpacing: '0.04em',
-                userSelect: 'none',
-              }}
-            >
-              scroll down, please :)
-            </span>
-          </div>
-
           {/* ─── MIDDLE: TEXT ─── */}
           <div
             className="hero-left"
@@ -211,6 +157,22 @@ export default function Hero() {
                 {phrase}
               </span>
             </div>
+
+            {/* Scroll hint */}
+            <span
+              className="hero-scroll-text"
+              style={{
+                fontFamily: 'var(--font-lora), Georgia, serif',
+                fontStyle: 'italic',
+                fontSize: 16,
+                color: '#8A7A64',
+                letterSpacing: '0.04em',
+                userSelect: 'none',
+                marginTop: 28,
+              }}
+            >
+              keep scrolling, please :)
+            </span>
           </div>
 
           {/* ─── RIGHT: PHOTO FRAME ─── */}
