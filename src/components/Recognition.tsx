@@ -110,8 +110,9 @@ export default function Recognition() {
         justifyContent: 'flex-start',
         padding: '24px',
         boxSizing: 'border-box',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
-
         {/* Eyebrow */}
         <p style={{
           fontFamily: 'var(--font-lora), Georgia, serif',
@@ -121,6 +122,8 @@ export default function Recognition() {
           color: '#8A7A64',
           margin: '0 0 24px 0',
           textAlign: 'center',
+          position: 'relative',
+          zIndex: 1,
         }}>
           recognition & achievements
         </p>
@@ -130,6 +133,7 @@ export default function Recognition() {
           ref={wrapperRef}
           style={{
             position: 'relative',
+            zIndex: 1,
             width: '100%',
             maxWidth: 1200,
             height: 500,
@@ -198,7 +202,48 @@ export default function Recognition() {
             </div>
           ))}
 
-          {/* Envelope SVG */}
+          {/* Envelope + botanical accents */}
+          <div style={{ position: 'relative', zIndex: 3, flexShrink: 0, width: 380, height: 260 }}>
+
+            {/* Botanical — top-left */}
+            <img src="/48945.svg" aria-hidden="true" style={{
+              position: 'absolute', top: -10, left: -10,
+              width: 160, height: 160, opacity: 0.85,
+              filter: 'brightness(0) saturate(100%) invert(65%) sepia(80%) saturate(1200%) hue-rotate(2deg) brightness(1.1)',
+              pointerEvents: 'none',
+              zIndex: 2,
+            }} />
+
+            {/* Botanical — top-right */}
+            <img src="/48945.svg" aria-hidden="true" style={{
+              position: 'absolute', top: -10, right: -10,
+              width: 160, height: 160, opacity: 0.85,
+              filter: 'brightness(0) saturate(100%) invert(65%) sepia(80%) saturate(1200%) hue-rotate(2deg) brightness(1.1)',
+              transform: 'scaleX(-1)',
+              pointerEvents: 'none',
+              zIndex: 2,
+            }} />
+
+            {/* Botanical — bottom-left */}
+            <img src="/48945.svg" aria-hidden="true" style={{
+              position: 'absolute', bottom: -10, left: -10,
+              width: 160, height: 160, opacity: 0.85,
+              filter: 'brightness(0) saturate(100%) invert(65%) sepia(80%) saturate(1200%) hue-rotate(2deg) brightness(1.1)',
+              transform: 'scaleY(-1)',
+              pointerEvents: 'none',
+              zIndex: 2,
+            }} />
+
+            {/* Botanical — bottom-right */}
+            <img src="/48945.svg" aria-hidden="true" style={{
+              position: 'absolute', bottom: -10, right: -10,
+              width: 160, height: 160, opacity: 0.85,
+              filter: 'brightness(0) saturate(100%) invert(65%) sepia(80%) saturate(1200%) hue-rotate(2deg) brightness(1.1)',
+              transform: 'scale(-1)',
+              pointerEvents: 'none',
+              zIndex: 2,
+            }} />
+
           <svg
             width="380"
             height="260"
@@ -206,7 +251,7 @@ export default function Recognition() {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
-            style={{ position: 'relative', zIndex: 3, flexShrink: 0 }}
+            style={{ position: 'relative', zIndex: 0 }}
           >
             {/* Body */}
             <rect x="0" y="0" width="280" height="190" rx="4" fill="#0F2440" />
@@ -215,10 +260,10 @@ export default function Recognition() {
             <polygon points="0,0 280,0 140,108" fill="#1A3A5C" />
 
             {/* Diagonal fold lines — classic diamond/X pattern, all corners to center */}
-            <line x1="0"   y1="0"   x2="140" y2="95" stroke="#C8941A" strokeWidth="1" opacity="0.6" />
-            <line x1="280" y1="0"   x2="140" y2="95" stroke="#C8941A" strokeWidth="1" opacity="0.6" />
-            <line x1="0"   y1="190" x2="140" y2="95" stroke="#C8941A" strokeWidth="1" opacity="0.6" />
-            <line x1="280" y1="190" x2="140" y2="95" stroke="#C8941A" strokeWidth="1" opacity="0.6" />
+            <line x1="0"   y1="0"   x2="140" y2="108" stroke="#C8941A" strokeWidth="1" opacity="0.6" />
+            <line x1="280" y1="0"   x2="140" y2="108" stroke="#C8941A" strokeWidth="1" opacity="0.6" />
+            <line x1="0"   y1="190" x2="140" y2="108" stroke="#C8941A" strokeWidth="1" opacity="0.6" />
+            <line x1="280" y1="190" x2="140" y2="108" stroke="#C8941A" strokeWidth="1" opacity="0.6" />
 
 
             {/* Wax seal */}
@@ -237,6 +282,7 @@ export default function Recognition() {
               E
             </text>
           </svg>
+          </div>{/* end envelope wrapper */}
         </div>
       </section>
     </>
