@@ -42,13 +42,13 @@ export default function Recognition() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.intersectionRatio >= 0.7) {
           el.classList.add('spread');
-        } else {
+        } else if (entry.intersectionRatio < 0.7) {
           el.classList.remove('spread');
         }
       },
-      { threshold: 0.65 }
+      { threshold: [0.7] }
     );
 
     observer.observe(el);
@@ -103,7 +103,6 @@ export default function Recognition() {
 
       <section style={{
         backgroundColor: '#E8DCC8',
-        minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -136,7 +135,7 @@ export default function Recognition() {
             zIndex: 1,
             width: '100%',
             maxWidth: 1200,
-            height: 500,
+            height: 430,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

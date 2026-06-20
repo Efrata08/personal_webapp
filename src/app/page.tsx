@@ -3,6 +3,7 @@ import About from '@/components/About';
 import Projects from '@/components/Projects';
 import TechStack from '@/components/TechStack';
 import Recognition from '@/components/Recognition';
+import Hobbies from '@/components/Hobbies';
 import Divider from '@/components/Divider';
 
 export default function Home() {
@@ -17,6 +18,8 @@ export default function Home() {
       <TechStack />
       <Divider />
       <Recognition />
+      <Divider />
+      <Hobbies />
     </main>
   );
 }
