@@ -68,12 +68,26 @@ export default function Hero() {
         @media (min-width: 1400px) {
           .hero-section { padding-right: 80px !important; }
         }
+
+        @keyframes flicker1 {
+          0%, 100% { opacity: 1;    filter: drop-shadow(0 12px 32px rgba(212,160,32,0.5))  brightness(1);    }
+          20%      { opacity: 0.92; filter: drop-shadow(0 12px 32px rgba(212,160,32,0.4))  brightness(0.94); }
+          40%      { opacity: 1;    filter: drop-shadow(0 12px 32px rgba(212,160,32,0.6))  brightness(1.06); }
+          65%      { opacity: 0.95; filter: drop-shadow(0 12px 32px rgba(212,160,32,0.45)) brightness(0.97); }
+          80%      { opacity: 1;    filter: drop-shadow(0 12px 32px rgba(212,160,32,0.55)) brightness(1.03); }
+        }
+        @keyframes flicker2 {
+          0%, 100% { opacity: 0.85; filter: drop-shadow(0 8px 20px rgba(212,160,32,0.35)) brightness(0.95); }
+          30%      { opacity: 1;    filter: drop-shadow(0 8px 20px rgba(212,160,32,0.5))  brightness(1.05); }
+          55%      { opacity: 0.88; filter: drop-shadow(0 8px 20px rgba(212,160,32,0.3))  brightness(0.92); }
+          75%      { opacity: 0.96; filter: drop-shadow(0 8px 20px rgba(212,160,32,0.45)) brightness(1);    }
+        }
       `}</style>
 
       <section
         className="hero-section"
         style={{
-          backgroundColor: '#E8DCC8',
+          backgroundColor: '#0F2440',
           height: '100vh',
           display: 'flex',
           alignItems: 'center',
@@ -83,9 +97,10 @@ export default function Hero() {
         <div
           className="hero-grid"
           style={{
-            maxWidth: 1260,
+            maxWidth: 945,
             width: '100%',
             margin: '0 auto',
+            transform: 'translateX(200px) scale(1.3)',
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             alignItems: 'center',
@@ -94,7 +109,7 @@ export default function Hero() {
           {/* ─── MIDDLE: TEXT ─── */}
           <div
             className="hero-left"
-            style={{ display: 'flex', flexDirection: 'column', paddingLeft: 56, paddingRight: 24 }}
+            style={{ display: 'flex', flexDirection: 'column', paddingLeft: 56, paddingRight: 24, position: 'relative' }}
           >
             {/* Welcome line */}
             <p
@@ -102,22 +117,26 @@ export default function Hero() {
               style={{
                 fontFamily: 'var(--font-lora), Georgia, serif',
                 fontStyle: 'italic',
-                fontSize: 26,
+                fontSize: 19.5,
                 color: '#8A7A64',
-                marginBottom: 26,
+                marginBottom: 19.5,
               }}
             >
               welcome to my humble space —
             </p>
+
+            {/* lanterns near welcome line */}
+            <img src="/lantern-final.png" alt="" aria-hidden="true" style={{ position: 'absolute', top: -40, left: -230, width: 165, height: 'auto', pointerEvents: 'none', animation: 'flicker1 3s ease-in-out infinite', zIndex: 1 }} />
+            <img src="/lantern-final.png" alt="" aria-hidden="true" style={{ position: 'absolute', top: 180, left: -126, width: 113, height: 'auto', pointerEvents: 'none', animation: 'flicker2 4s ease-in-out infinite 0.8s', zIndex: 1 }} />
 
             {/* "hi, the name is" */}
             <p
               className="hero-fade-2"
               style={{
                 fontFamily: 'var(--font-lora), Georgia, serif',
-                fontSize: 22,
+                fontSize: 16.5,
                 color: '#6A5A48',
-                marginBottom: 10,
+                marginBottom: 7.5,
               }}
             >
               hi, the name is
@@ -129,18 +148,18 @@ export default function Hero() {
               style={{
                 fontFamily: 'var(--font-playfair), Georgia, serif',
                 fontStyle: 'italic',
-                fontSize: 'clamp(114px, 13vw, 177px)',
-                color: '#0F2440',
+                fontSize: 'clamp(85px, 9.75vw, 133px)',
+                color: '#D4A020',
                 lineHeight: 1,
                 letterSpacing: '-0.01em',
-                margin: '0 0 36px 0',
+                margin: '0 0 27px 0',
               }}
             >
               Efrata
             </h1>
 
             {/* Cycling phrase */}
-            <div style={{ height: 47 }}>
+            <div style={{ height: 35 }}>
               <span
                 style={{
                   display: 'inline-block',
@@ -150,7 +169,7 @@ export default function Hero() {
                     ? 'var(--font-playfair), Georgia, serif'
                     : 'var(--font-lora), Georgia, serif',
                   fontStyle: 'italic',
-                  fontSize: isEthiopian ? 29 : 26,
+                  fontSize: isEthiopian ? 21.75 : 19.5,
                   color: isEthiopian ? '#D4A020' : '#0F2440',
                 }}
               >
@@ -164,11 +183,11 @@ export default function Hero() {
               style={{
                 fontFamily: 'var(--font-lora), Georgia, serif',
                 fontStyle: 'italic',
-                fontSize: 21,
+                fontSize: 15.75,
                 color: '#8A7A64',
                 letterSpacing: '0.04em',
                 userSelect: 'none',
-                marginTop: 36,
+                marginTop: 27,
               }}
             >
               keep scrolling, please :)
@@ -180,46 +199,42 @@ export default function Hero() {
             className="hero-fade-r hero-right"
             style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}
           >
-            {/*
-              Wrapper is 450×510 = frame (360×420) + 45px ornament bleed on each side.
-              SVG is offset (45, 45) so frame corners align with ornament centers.
-            */}
-            <div style={{ position: 'relative', width: 585, height: 663 }}>
+            <div style={{ position: 'relative', width: 439, height: 497 }}>
 
               {/* ── SVG frame ── */}
               <svg
-                width="468"
-                height="546"
+                width="351"
+                height="410"
                 viewBox="0 0 252 332"
                 preserveAspectRatio="none"
-                style={{ position: 'absolute', top: 58.5, left: 58.5, overflow: 'visible' }}
+                style={{ position: 'absolute', top: 43.9, left: 43.9, overflow: 'visible' }}
                 aria-hidden="true"
               >
                 {/* Outer filled rectangle */}
                 <rect
                   x="0" y="0" width="252" height="332"
-                  fill="#C8B898" stroke="#0F2440" strokeWidth="2.6"
+                  fill="#0F2440" stroke="#D4A020" strokeWidth="2.6"
                 />
 
                 {/* Inner border (inset 8px) */}
                 <rect
                   x="8" y="8" width="236" height="316"
-                  fill="none" stroke="#0F2440" strokeWidth="1"
+                  fill="none" stroke="#D4A020" strokeWidth="1"
                 />
 
                 {/* Registration cross lines – intentionally asymmetric lengths */}
                 {/* Top-left */}
-                <line x1="-11" y1="0"   x2="14"  y2="0"   stroke="#0F2440" strokeWidth="2.2" />
-                <line x1="0"   y1="-13" x2="0"   y2="12"  stroke="#0F2440" strokeWidth="2.2" />
+                <line x1="-11" y1="0"   x2="14"  y2="0"   stroke="#D4A020" strokeWidth="2.2" />
+                <line x1="0"   y1="-13" x2="0"   y2="12"  stroke="#D4A020" strokeWidth="2.2" />
                 {/* Top-right */}
-                <line x1="238" y1="0"   x2="264" y2="0"   stroke="#0F2440" strokeWidth="2.2" />
-                <line x1="252" y1="-11" x2="252" y2="14"  stroke="#0F2440" strokeWidth="2.2" />
+                <line x1="238" y1="0"   x2="264" y2="0"   stroke="#D4A020" strokeWidth="2.2" />
+                <line x1="252" y1="-11" x2="252" y2="14"  stroke="#D4A020" strokeWidth="2.2" />
                 {/* Bottom-right */}
-                <line x1="239" y1="332" x2="263" y2="332" stroke="#0F2440" strokeWidth="2.2" />
-                <line x1="252" y1="319" x2="252" y2="345" stroke="#0F2440" strokeWidth="2.2" />
+                <line x1="239" y1="332" x2="263" y2="332" stroke="#D4A020" strokeWidth="2.2" />
+                <line x1="252" y1="319" x2="252" y2="345" stroke="#D4A020" strokeWidth="2.2" />
                 {/* Bottom-left */}
-                <line x1="-12" y1="332" x2="13"  y2="332" stroke="#0F2440" strokeWidth="2.2" />
-                <line x1="0"   y1="320" x2="0"   y2="344" stroke="#0F2440" strokeWidth="2.2" />
+                <line x1="-12" y1="332" x2="13"  y2="332" stroke="#D4A020" strokeWidth="2.2" />
+                <line x1="0"   y1="320" x2="0"   y2="344" stroke="#D4A020" strokeWidth="2.2" />
 
                 {/* Left vine – gently wavy */}
                 <path
@@ -233,13 +248,13 @@ export default function Hero() {
                 />
               </svg>
 
-              {/* ── Photo — inset inside the inner border rect (8px in viewBox → ~12px screen) ── */}
+              {/* ── Photo — inset inside the inner border rect ── */}
               <div style={{
                 position: 'absolute',
-                top: 58.5 + 15.6,
-                left: 58.5 + 15.6,
-                width: 468 - 31.2,
-                height: 546 - 31.2,
+                top: 55.6,
+                left: 55.6,
+                width: 327.6,
+                height: 386.1,
                 overflow: 'hidden',
               }}>
                 <Image
@@ -253,11 +268,11 @@ export default function Hero() {
 
               {/* ── Vine overlay — same coords as main SVG, sits above photo ── */}
               <svg
-                width="468"
-                height="546"
+                width="351"
+                height="410"
                 viewBox="0 0 252 332"
                 preserveAspectRatio="none"
-                style={{ position: 'absolute', top: 58.5, left: 58.5, overflow: 'visible', pointerEvents: 'none' }}
+                style={{ position: 'absolute', top: 43.9, left: 43.9, overflow: 'visible', pointerEvents: 'none' }}
                 aria-hidden="true"
               >
                 <path
@@ -278,7 +293,7 @@ export default function Hero() {
                 aria-hidden="true"
                 style={{
                   position: 'absolute',
-                  width: 117, height: 117,
+                  width: 88, height: 88,
                   top: 0, left: 0,
                   transform: 'rotate(0deg)',
                   filter: BRASS_FILTER,
@@ -291,7 +306,7 @@ export default function Hero() {
                 aria-hidden="true"
                 style={{
                   position: 'absolute',
-                  width: 117, height: 117,
+                  width: 88, height: 88,
                   top: 0, right: 0,
                   transform: 'rotate(90deg)',
                   filter: BRASS_FILTER,
@@ -304,7 +319,7 @@ export default function Hero() {
                 aria-hidden="true"
                 style={{
                   position: 'absolute',
-                  width: 117, height: 117,
+                  width: 88, height: 88,
                   bottom: 0, right: 0,
                   transform: 'rotate(180deg)',
                   filter: BRASS_FILTER,
@@ -317,7 +332,7 @@ export default function Hero() {
                 aria-hidden="true"
                 style={{
                   position: 'absolute',
-                  width: 117, height: 117,
+                  width: 88, height: 88,
                   bottom: 0, left: 0,
                   transform: 'rotate(270deg)',
                   filter: BRASS_FILTER,

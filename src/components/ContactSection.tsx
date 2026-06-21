@@ -289,12 +289,12 @@ export default function ContactSection() {
         .cs-columns {
           display: flex;
           flex-direction: row;
-          gap: 56px;
-          max-width: 1000px;
+          gap: 150px;
+          max-width: 1150px;
           margin: 0 auto;
         }
         .cs-left {
-          flex: 0 0 340px;
+          flex: 0 0 400px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -302,6 +302,33 @@ export default function ContactSection() {
         }
         .cs-right {
           flex: 1;
+        }
+
+        /* ── lanterns ── */
+        .cs-lanterns {
+          display: none;
+        }
+
+        @keyframes flicker1 {
+          0%, 100% { opacity: 1;    filter: drop-shadow(0 12px 32px rgba(212,160,32,0.5))  brightness(1);    }
+          20%      { opacity: 0.92; filter: drop-shadow(0 12px 32px rgba(212,160,32,0.4))  brightness(0.94); }
+          40%      { opacity: 1;    filter: drop-shadow(0 12px 32px rgba(212,160,32,0.6))  brightness(1.06); }
+          65%      { opacity: 0.95; filter: drop-shadow(0 12px 32px rgba(212,160,32,0.45)) brightness(0.97); }
+          80%      { opacity: 1;    filter: drop-shadow(0 12px 32px rgba(212,160,32,0.55)) brightness(1.03); }
+        }
+        @keyframes flicker2 {
+          0%, 100% { opacity: 0.85; filter: drop-shadow(0 8px 20px rgba(212,160,32,0.35)) brightness(0.95); }
+          30%      { opacity: 1;    filter: drop-shadow(0 8px 20px rgba(212,160,32,0.5))  brightness(1.05); }
+          55%      { opacity: 0.88; filter: drop-shadow(0 8px 20px rgba(212,160,32,0.3))  brightness(0.92); }
+          75%      { opacity: 0.96; filter: drop-shadow(0 8px 20px rgba(212,160,32,0.45)) brightness(1);    }
+        }
+        @keyframes glowPulse1 {
+          0%, 100% { opacity: 0.6; transform: scale(1);    }
+          50%      { opacity: 1;   transform: scale(1.1);  }
+        }
+        @keyframes glowPulse2 {
+          0%, 100% { opacity: 0.4; transform: scale(1);    }
+          50%      { opacity: 0.8; transform: scale(1.08); }
         }
 
         /* ── hawk ── */
@@ -314,7 +341,8 @@ export default function ContactSection() {
           transform: translateX(-115vw) rotate(-8deg);
         }
         .hawk-img {
-          width: 320px;
+          width: 100%;
+          max-width: 380px;
           height: auto;
         }
         .cs-hawk-float {
@@ -353,16 +381,7 @@ export default function ContactSection() {
         .scroll-wrapper {
           position: relative;
         }
-        .wax-seal {
-          position: absolute;
-          bottom: calc(7% + 15px);
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 3;
-          pointer-events: none;
-          filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35));
-        }
-        .scroll-img {
+.scroll-img {
           width: 100%;
           height: auto;
           display: block;
@@ -383,9 +402,9 @@ export default function ContactSection() {
 
         .social-label {
           font-family: var(--font-lora), Georgia, serif;
-          font-size: 9px;
+          font-size: 11.7px;
           font-style: italic;
-          color: #0F2440;
+          color: #5A3000;
           text-align: center;
           margin-bottom: 8px;
         }
@@ -428,7 +447,7 @@ export default function ContactSection() {
           gap: 8px;
           margin-bottom: 7px;
           font-family: var(--font-lora), Georgia, serif;
-          font-size: 10px;
+          font-size: 13px;
           font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.26em;
@@ -447,10 +466,11 @@ export default function ContactSection() {
         .form-label {
           display: block;
           font-family: var(--font-lora), Georgia, serif;
-          font-size: 10px;
+          font-size: 10.4px;
+          font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.22em;
-          color: #0F2440;
+          color: #3D2000;
           margin-bottom: 3px;
         }
         .form-input,
@@ -458,10 +478,10 @@ export default function ContactSection() {
           width: 100%;
           background: transparent;
           border: none;
-          border-bottom: 1px solid rgba(15,36,64,0.5);
+          border-bottom: 1.5px solid rgba(80,40,0,0.5);
           padding: 3px 2px;
-          font-size: 15px;
-          color: #0F2440;
+          font-size: 16.9px;
+          color: #2C1200;
           font-family: var(--font-lora), Georgia, serif;
           outline: none;
           resize: none;
@@ -469,7 +489,7 @@ export default function ContactSection() {
         }
         .form-input::placeholder,
         .form-textarea::placeholder {
-          color: #6A7A8A;
+          color: #8B6020;
           font-style: italic;
         }
         .form-input:focus,
@@ -482,25 +502,40 @@ export default function ContactSection() {
           cursor: not-allowed;
         }
 
+        .field-textarea {
+          overflow-y: auto;
+          padding-right: 8px;
+          scrollbar-width: thin;
+          scrollbar-color: #C8941A rgba(139,90,0,0.1);
+        }
+        .field-textarea::-webkit-scrollbar       { width: 4px; }
+        .field-textarea::-webkit-scrollbar-track { background: rgba(139,90,0,0.1); }
+        .field-textarea::-webkit-scrollbar-thumb { background: #C8941A; border-radius: 2px; }
+        .field-textarea::-webkit-scrollbar-thumb:hover { background: #8B6010; }
+
         .form-submit {
           margin-top: 7px;
           width: 100%;
-          background: var(--color-navy);
-          color: var(--color-parchment);
+          background: #1a0a00;
+          background-image: repeating-linear-gradient(
+            45deg, transparent, transparent 2px,
+            rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px
+          );
+          color: #E8C87A;
           border: none;
-          padding: 9px 16px;
+          padding: 14px 20px;
           font-family: var(--font-lora), Georgia, serif;
           font-size: 10px;
           text-transform: uppercase;
-          letter-spacing: 0.22em;
+          letter-spacing: 0.25em;
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 6px;
-          transition: color 0.2s;
+          transition: all 0.2s;
         }
-        .form-submit:not(:disabled):hover { color: var(--color-ochre); }
+        .form-submit:not(:disabled):hover { background: #2C1200; color: #D4A020; }
         .form-submit:focus-visible        { outline: 2px solid var(--color-brass); }
         .form-submit:disabled             { opacity: 0.38; cursor: not-allowed; }
 
@@ -649,6 +684,26 @@ export default function ContactSection() {
       `}</style>
 
       <section ref={sectionRef} className="contact-section">
+{/* botanical vines */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/hawk/vine-2.png"
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            left: 0,
+            top: 350,
+            height: '55%',
+            width: 'auto',
+            maxWidth: 280,
+            pointerEvents: 'none',
+            zIndex: 0,
+            opacity: 1,
+            filter: 'brightness(1.4)',
+          }}
+        />
+
         {/* corner brackets */}
         <div className="cs-corner cs-corner-tl" />
         <div className="cs-corner cs-corner-tr" />
@@ -669,7 +724,6 @@ export default function ContactSection() {
 
           {/* section header */}
           <header className="cs-header">
-            <p className="cs-eyebrow">Correspondence</p>
             <h2 className="cs-title">Get in Touch</h2>
             <div className="cs-divider" />
             <p className="cs-subtitle">The hawk awaits your correspondence</p>
@@ -677,6 +731,20 @@ export default function ContactSection() {
 
           {/* two columns */}
           <div className="cs-columns">
+
+            {/* col 1 — lanterns */}
+            <div className="cs-lanterns" aria-hidden="true">
+              {/* glow 1 */}
+              <div style={{ position: 'absolute', top: 80, left: -20, width: 220, height: 220, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(212,160,32,0.15) 0%, transparent 70%)', animation: 'glowPulse1 3s ease-in-out infinite', pointerEvents: 'none', zIndex: 1 }} />
+              {/* glow 2 */}
+              <div style={{ position: 'absolute', top: 280, left: 50, width: 160, height: 160, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(212,160,32,0.1) 0%, transparent 70%)', animation: 'glowPulse2 4s ease-in-out infinite 0.8s', pointerEvents: 'none', zIndex: 1 }} />
+              {/* lantern 1 — in-flow, offset via margin */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/lantern-final.png" alt="" style={{ position: 'relative', marginTop: 0, marginLeft: 16, width: 130, height: 'auto', filter: 'drop-shadow(0 12px 32px rgba(212,160,32,0.5))', animation: 'flicker1 3s ease-in-out infinite', zIndex: 2, flexShrink: 0 }} />
+              {/* lantern 2 — in-flow, offset below lantern 1 */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/lantern-final.png" alt="" style={{ position: 'relative', marginTop: 24, marginLeft: 90, width: 88, height: 'auto', filter: 'drop-shadow(0 8px 20px rgba(212,160,32,0.4))', animation: 'flicker2 4s ease-in-out infinite 0.8s', zIndex: 2, flexShrink: 0 }} />
+            </div>
 
             {/* left — hawk */}
             <div className="cs-left" aria-hidden="true">
@@ -704,28 +772,7 @@ export default function ContactSection() {
                   className="scroll-img"
                 />
 
-                {/* wax seal */}
-                <svg className="wax-seal" width="72" height="72" viewBox="0 0 72 72" aria-hidden="true">
-                  <defs>
-                    <radialGradient id="waxGrad" cx="38%" cy="32%" r="65%">
-                      <stop offset="0%"   stopColor="#C0392B"/>
-                      <stop offset="55%"  stopColor="#922B21"/>
-                      <stop offset="100%" stopColor="#641E16"/>
-                    </radialGradient>
-                  </defs>
-                  {/* outer shadow ring */}
-                  <circle cx="36" cy="37" r="30" fill="rgba(0,0,0,0.25)"/>
-                  {/* main seal */}
-                  <circle cx="36" cy="36" r="30" fill="url(#waxGrad)"/>
-                  {/* embossed outer ring */}
-                  <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="2"/>
-                  {/* inner decorative ring */}
-                  <circle cx="36" cy="36" r="24" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="0.8"/>
-                  {/* initial */}
-                  <text x="36" y="43" textAnchor="middle" fontFamily="Georgia, serif" fontStyle="italic" fontSize="28" fill="rgba(255,255,255,0.88)" letterSpacing="0">E</text>
-                </svg>
-
-                <div className="scroll-form-content">
+<div className="scroll-form-content">
                   <div className="form-deco-header">
                     <span className="form-deco-line" />
                     Your message
@@ -787,7 +834,7 @@ export default function ContactSection() {
                       <textarea
                         id="cs-message"
                         rows={3}
-                        className="form-textarea"
+                        className="form-textarea field-textarea"
                         placeholder="Write your message here..."
                         value={message}
                         onChange={e => setMessage(e.target.value)}
@@ -800,13 +847,7 @@ export default function ContactSection() {
                       className="form-submit"
                       disabled={isDisabled}
                     >
-                      {formState === 'sending' ? (
-                        <>
-                          <span className="sending-dot" />
-                          <span className="sending-dot" />
-                          <span className="sending-dot" />
-                        </>
-                      ) : '— Dispatch the Hawk —'}
+                      {formState === 'sending' ? '🪶 Dispatching… 🪶' : '🪶 Dispatch the Hawk 🪶'}
                     </button>
 
                     {formState === 'error' && (
