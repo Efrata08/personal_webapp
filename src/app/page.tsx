@@ -4,6 +4,7 @@ import Projects from '@/components/Projects';
 import TechStack from '@/components/TechStack';
 import Recognition from '@/components/Recognition';
 import Hobbies from '@/components/Hobbies';
+import ContactSection from '@/components/ContactSection';
 import Divider from '@/components/Divider';
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
       <Recognition />
       <Divider />
       <Hobbies />
+      <ContactSection />
     </main>
   );
 }

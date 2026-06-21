@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const TYPED_TEXT = "I'm Ethiopian first — it's the identity I carry everywhere and a community I'm proud to belong to. But I'm also African, a woman, a Christian, and an international student.";
+const TYPED_TEXT = "I'm Ethiopian first . But I'm also African, a woman, a Christian, and an international student. Each part of my identity shapes how I see the world, the problems I care about, and the people I hope to build for.";
 
-// Approximate chars per line at 12px Special Elite in 180px container
-const CHARS_PER_LINE = 15;
+// Approximate chars per line for Lora italic 15.5px in 244px container
+const CHARS_PER_LINE = 32;
 
 export default function About() {
   const sectionRef      = useRef<HTMLElement>(null);
@@ -13,7 +13,7 @@ export default function About() {
 
   const [svgContent,  setSvgContent]  = useState('');
   const [typedText,   setTypedText]   = useState('');
-  const [paperHeight, setPaperHeight] = useState(140);
+  const [paperHeight, setPaperHeight] = useState(160);
 
   const typingStarted = useRef(false);
   const visibleRef    = useRef(false);
@@ -56,7 +56,7 @@ export default function About() {
 
       // Grow paper upward by 18px each time a new line is added
       const lines = Math.ceil(idx / CHARS_PER_LINE);
-      setPaperHeight(Math.min(140 + (lines - 1) * 22, 300));
+      setPaperHeight(Math.min(160 + (lines - 1) * 22, 400));
 
       setTimeout(tick, 80);
     };
@@ -238,12 +238,13 @@ export default function About() {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'flex-end', /* text anchored to bottom, grows upward */
+                    paddingTop: 15,             /* gap between text and paper fold */
                   }}
                 >
                   <p style={{
                     fontFamily: 'var(--font-lora), Georgia, serif',
                     fontStyle: 'italic',
-                    fontSize: 15.5,
+                    fontSize: 14.9,
                     color: '#0F2440',
                     lineHeight: 1.6,
                     margin: 0,

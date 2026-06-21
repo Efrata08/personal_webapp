@@ -83,7 +83,7 @@ export default function Hero() {
         <div
           className="hero-grid"
           style={{
-            maxWidth: 1080,
+            maxWidth: 1260,
             width: '100%',
             margin: '0 auto',
             display: 'grid',
@@ -102,9 +102,9 @@ export default function Hero() {
               style={{
                 fontFamily: 'var(--font-lora), Georgia, serif',
                 fontStyle: 'italic',
-                fontSize: 20,
+                fontSize: 26,
                 color: '#8A7A64',
-                marginBottom: 20,
+                marginBottom: 26,
               }}
             >
               welcome to my humble space —
@@ -115,9 +115,9 @@ export default function Hero() {
               className="hero-fade-2"
               style={{
                 fontFamily: 'var(--font-lora), Georgia, serif',
-                fontSize: 17,
+                fontSize: 22,
                 color: '#6A5A48',
-                marginBottom: 8,
+                marginBottom: 10,
               }}
             >
               hi, the name is
@@ -129,18 +129,18 @@ export default function Hero() {
               style={{
                 fontFamily: 'var(--font-playfair), Georgia, serif',
                 fontStyle: 'italic',
-                fontSize: 'clamp(88px, 10vw, 136px)',
+                fontSize: 'clamp(114px, 13vw, 177px)',
                 color: '#0F2440',
                 lineHeight: 1,
                 letterSpacing: '-0.01em',
-                margin: '0 0 28px 0',
+                margin: '0 0 36px 0',
               }}
             >
               Efrata
             </h1>
 
             {/* Cycling phrase */}
-            <div style={{ height: 36 }}>
+            <div style={{ height: 47 }}>
               <span
                 style={{
                   display: 'inline-block',
@@ -150,7 +150,7 @@ export default function Hero() {
                     ? 'var(--font-playfair), Georgia, serif'
                     : 'var(--font-lora), Georgia, serif',
                   fontStyle: 'italic',
-                  fontSize: isEthiopian ? 22 : 20,
+                  fontSize: isEthiopian ? 29 : 26,
                   color: isEthiopian ? '#D4A020' : '#0F2440',
                 }}
               >
@@ -164,11 +164,11 @@ export default function Hero() {
               style={{
                 fontFamily: 'var(--font-lora), Georgia, serif',
                 fontStyle: 'italic',
-                fontSize: 16,
+                fontSize: 21,
                 color: '#8A7A64',
                 letterSpacing: '0.04em',
                 userSelect: 'none',
-                marginTop: 28,
+                marginTop: 36,
               }}
             >
               keep scrolling, please :)
@@ -184,15 +184,15 @@ export default function Hero() {
               Wrapper is 450×510 = frame (360×420) + 45px ornament bleed on each side.
               SVG is offset (45, 45) so frame corners align with ornament centers.
             */}
-            <div style={{ position: 'relative', width: 450, height: 510 }}>
+            <div style={{ position: 'relative', width: 585, height: 663 }}>
 
               {/* ── SVG frame ── */}
               <svg
-                width="360"
-                height="420"
+                width="468"
+                height="546"
                 viewBox="0 0 252 332"
                 preserveAspectRatio="none"
-                style={{ position: 'absolute', top: 45, left: 45, overflow: 'visible' }}
+                style={{ position: 'absolute', top: 58.5, left: 58.5, overflow: 'visible' }}
                 aria-hidden="true"
               >
                 {/* Outer filled rectangle */}
@@ -236,10 +236,10 @@ export default function Hero() {
               {/* ── Photo — inset inside the inner border rect (8px in viewBox → ~12px screen) ── */}
               <div style={{
                 position: 'absolute',
-                top: 45 + 12,
-                left: 45 + 12,
-                width: 360 - 24,
-                height: 420 - 24,
+                top: 58.5 + 15.6,
+                left: 58.5 + 15.6,
+                width: 468 - 31.2,
+                height: 546 - 31.2,
                 overflow: 'hidden',
               }}>
                 <Image
@@ -253,11 +253,11 @@ export default function Hero() {
 
               {/* ── Vine overlay — same coords as main SVG, sits above photo ── */}
               <svg
-                width="360"
-                height="420"
+                width="468"
+                height="546"
                 viewBox="0 0 252 332"
                 preserveAspectRatio="none"
-                style={{ position: 'absolute', top: 45, left: 45, overflow: 'visible', pointerEvents: 'none' }}
+                style={{ position: 'absolute', top: 58.5, left: 58.5, overflow: 'visible', pointerEvents: 'none' }}
                 aria-hidden="true"
               >
                 <path
@@ -278,7 +278,7 @@ export default function Hero() {
                 aria-hidden="true"
                 style={{
                   position: 'absolute',
-                  width: 90, height: 90,
+                  width: 117, height: 117,
                   top: 0, left: 0,
                   transform: 'rotate(0deg)',
                   filter: BRASS_FILTER,
@@ -291,7 +291,7 @@ export default function Hero() {
                 aria-hidden="true"
                 style={{
                   position: 'absolute',
-                  width: 90, height: 90,
+                  width: 117, height: 117,
                   top: 0, right: 0,
                   transform: 'rotate(90deg)',
                   filter: BRASS_FILTER,
@@ -304,7 +304,7 @@ export default function Hero() {
                 aria-hidden="true"
                 style={{
                   position: 'absolute',
-                  width: 90, height: 90,
+                  width: 117, height: 117,
                   bottom: 0, right: 0,
                   transform: 'rotate(180deg)',
                   filter: BRASS_FILTER,
@@ -317,7 +317,7 @@ export default function Hero() {
                 aria-hidden="true"
                 style={{
                   position: 'absolute',
-                  width: 90, height: 90,
+                  width: 117, height: 117,
                   bottom: 0, left: 0,
                   transform: 'rotate(270deg)',
                   filter: BRASS_FILTER,
