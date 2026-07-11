@@ -147,6 +147,68 @@ export default function Projects() {
           {/* Card + ribbons wrapper */}
           <div style={{ position: 'relative' }}>
 
+            {/* Corner ornaments — gold-recolored frame1.svg, all 4 corners.
+                Rotation is offset 180deg from Hero's corner-ornament.svg
+                convention (0/90/180/270 for TL/TR/BR/BL) — this asset's
+                default orientation faces the opposite way, confirmed by the
+                top-right/bottom-left swap. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/frame1-gold.svg"
+              alt=""
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                top: -10, left: -10,
+                width: 220, height: 220,
+                transform: 'rotate(180deg)',
+                pointerEvents: 'none',
+                zIndex: 2,
+              }}
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/frame1-gold.svg"
+              alt=""
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                top: -10, right: -10,
+                width: 220, height: 220,
+                transform: 'rotate(270deg)',
+                pointerEvents: 'none',
+                zIndex: 2,
+              }}
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/frame1-gold.svg"
+              alt=""
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                bottom: -10, right: -10,
+                width: 220, height: 220,
+                transform: 'rotate(0deg)',
+                pointerEvents: 'none',
+                zIndex: 2,
+              }}
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/frame1-gold.svg"
+              alt=""
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                bottom: -10, left: -10,
+                width: 220, height: 220,
+                transform: 'rotate(90deg)',
+                pointerEvents: 'none',
+                zIndex: 2,
+              }}
+            />
+
 {/* Slider — overflow hidden, border on this element */}
           <div style={{
             overflow: 'hidden',

@@ -73,8 +73,23 @@ export default function ContactSection() {
   const [message,          setMessage]          = useState('');
   const [formState,        setFormState]        = useState<FormState>('idle');
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [touched, setTouched] = useState<{ email?: boolean; message?: boolean }>({});
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const MIN_MESSAGE_LENGTH = 10;
+
+  const emailError   = email.trim() && !EMAIL_RE.test(email.trim())
+    ? 'Please enter a valid email address.'
+    : '';
+  const messageError = message.trim() && message.trim().length < MIN_MESSAGE_LENGTH
+    ? `Message should be at least ${MIN_MESSAGE_LENGTH} characters.`
+    : '';
 
   const isFormFilled = Boolean(name.trim() && email.trim() && message.trim());
+  // format errors are checked on submit (not baked into `disabled`) — a
+  // disabled button can't fire a click/submit event, so gating disabled on
+  // format would leave an invalid email silently un-clickable with no way
+  // to surface why.
   const isDisabled   = !isFormFilled || formState === 'sending' || formState === 'sent';
 
   useEffect(() => { console.log('Hawk phase:', hawkPhase); }, [hawkPhase]);
@@ -160,6 +175,11 @@ export default function ContactSection() {
     e.preventDefault();
     if (isDisabled) return;
 
+    if (emailError || messageError) {
+      setTouched({ email: true, message: true });
+      return;
+    }
+
     setFormState('sending');
     setIsFloating(false);
     setShowGlow(false);
@@ -212,6 +232,7 @@ export default function ContactSection() {
   const handleSendAnother = () => {
     setShowConfirmation(false);
     setName(''); setEmail(''); setSubject(''); setMessage('');
+    setTouched({});
     setFormState('idle');
     setTimeout(flyIn, 50);
   };
@@ -549,6 +570,18 @@ export default function ContactSection() {
         .form-submit:focus-visible        { outline: 2px solid var(--color-brass); }
         .form-submit:disabled             { opacity: 0.38; cursor: not-allowed; }
 
+        .field-error {
+          font-family: var(--font-lora), Georgia, serif;
+          font-size: 10.5px;
+          font-style: italic;
+          color: #8B1A1A;
+          margin: 3px 0 0;
+        }
+        .form-input.has-error,
+        .form-textarea.has-error {
+          border-bottom-color: #8B1A1A;
+        }
+
         .sending-dot {
           width: 4px;
           height: 4px;
@@ -709,20 +742,18 @@ export default function ContactSection() {
 {/* botanical vines */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/hawk/vine-2.png"
+          src="/vine3.svg"
           alt=""
           aria-hidden="true"
           style={{
             position: 'absolute',
-            left: 0,
-            top: 350,
-            height: '55%',
-            width: 'auto',
-            maxWidth: 280,
+            left: -85,
+            top: 145,
+            width: 380,
+            height: 'auto',
             pointerEvents: 'none',
             zIndex: 0,
-            opacity: 1,
-            filter: 'brightness(1.4)',
+            opacity: 0.85,
           }}
         />
 
@@ -829,13 +860,19 @@ export default function ContactSection() {
                       <input
                         id="cs-email"
                         type="email"
-                        className="form-input"
+                        className={`form-input${touched.email && emailError ? ' has-error' : ''}`}
                         placeholder="your@email.com"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
+                        onBlur={() => setTouched(t => ({ ...t, email: true }))}
                         disabled={formState === 'sending' || formState === 'sent'}
                         autoComplete="email"
+                        aria-invalid={touched.email && Boolean(emailError)}
+                        aria-describedby={touched.email && emailError ? 'cs-email-error' : undefined}
                       />
+                      {touched.email && emailError && (
+                        <p id="cs-email-error" className="field-error" role="alert">{emailError}</p>
+                      )}
                     </div>
 
                     <div className="form-field">
@@ -856,12 +893,18 @@ export default function ContactSection() {
                       <textarea
                         id="cs-message"
                         rows={3}
-                        className="form-textarea field-textarea"
+                        className={`form-textarea field-textarea${touched.message && messageError ? ' has-error' : ''}`}
                         placeholder="Write your message here..."
                         value={message}
                         onChange={e => setMessage(e.target.value)}
+                        onBlur={() => setTouched(t => ({ ...t, message: true }))}
                         disabled={formState === 'sending' || formState === 'sent'}
+                        aria-invalid={touched.message && Boolean(messageError)}
+                        aria-describedby={touched.message && messageError ? 'cs-message-error' : undefined}
                       />
+                      {touched.message && messageError && (
+                        <p id="cs-message-error" className="field-error" role="alert">{messageError}</p>
+                      )}
                     </div>
 
                     <button
