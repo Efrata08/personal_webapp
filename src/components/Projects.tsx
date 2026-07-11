@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 const PROJECTS = [
   {
@@ -14,8 +15,8 @@ const PROJECTS = [
   },
   {
     number: '02 / 04',
-    title: 'PhixPhilly',
-    titleSuffix: '',
+    title: 'Phix',
+    titleSuffix: 'Philly',
     description:
       'Mapped 500K+ Philadelphia 311 infrastructure cases using Gemini Vision AI and a Haversine routing algorithm. Built at Philly Codefest 2026 — civic tech that makes city issues visible.',
     tags: ['React Native', 'Supabase', 'Gemini AI'],
@@ -23,12 +24,13 @@ const PROJECTS = [
   },
   {
     number: '03 / 04',
-    title: 'Room8',
-    titleSuffix: '',
+    title: 'Room',
+    titleSuffix: '8',
     description:
-      'Roommate management app handling cost splitting, shared calendars, chores, and guest notifications. Splitwise + Google Calendar + group chat — built for the chaos of living with people.',
-    tags: ['React Native', 'TypeScript'],
+      "An all-in-one roommate coordination app built at the Trico Protothon. Instead of juggling a separate calendar app, a Splitwise, a group chat, and sticky notes on the fridge, Room8 brings it all into one place. It features shared calendars for chores and events (including guest scheduling), expense splitting for shared costs, and a digital shared fridge with sticky notes.",
+    tags: ['Swift', 'SwiftUI'],
     linkLabel: 'Demo',
+    image: '/room8/dashboard-calendar.png',
   },
   {
     number: '04 / 04',
@@ -234,14 +236,25 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  {/* Right: navy placeholder */}
+                  {/* Right: screenshot, or navy placeholder if none yet */}
                   <div className="project-right" style={{
                     backgroundColor: '#0F2440',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     minWidth: 0,
+                    position: 'relative',
+                    overflow: 'hidden',
                   }}>
+                    {project.image ? (
+                      <Image
+                        src={project.image}
+                        alt={`${project.title}${project.titleSuffix} screenshot`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        style={{ objectFit: 'contain', padding: 24 }}
+                      />
+                    ) : (
                     <p style={{
                       fontFamily: 'var(--font-lora), Georgia, serif',
                       fontStyle: 'italic',
@@ -251,6 +264,7 @@ export default function Projects() {
                     }}>
                       screenshot coming soon
                     </p>
+                    )}
                   </div>
                 </div>
               ))}
