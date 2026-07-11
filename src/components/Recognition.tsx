@@ -240,7 +240,7 @@ export default function Recognition() {
           <div className="recognition-envelope" style={{ position: 'relative', zIndex: 3, flexShrink: 0, width: 380, height: 260 }}>
 
             {/* Botanical — top-left */}
-            <img src="/48945.svg" aria-hidden="true" style={{
+            <img src="/48945.svg" alt="" aria-hidden="true" style={{
               position: 'absolute', top: -10, left: -10,
               width: 160, height: 160, opacity: 0.85,
               filter: 'brightness(0) saturate(100%) invert(65%) sepia(80%) saturate(1200%) hue-rotate(2deg) brightness(1.1)',
@@ -249,7 +249,7 @@ export default function Recognition() {
             }} />
 
             {/* Botanical — top-right */}
-            <img src="/48945.svg" aria-hidden="true" style={{
+            <img src="/48945.svg" alt="" aria-hidden="true" style={{
               position: 'absolute', top: -10, right: -10,
               width: 160, height: 160, opacity: 0.85,
               filter: 'brightness(0) saturate(100%) invert(65%) sepia(80%) saturate(1200%) hue-rotate(2deg) brightness(1.1)',
@@ -259,7 +259,7 @@ export default function Recognition() {
             }} />
 
             {/* Botanical — bottom-left */}
-            <img src="/48945.svg" aria-hidden="true" style={{
+            <img src="/48945.svg" alt="" aria-hidden="true" style={{
               position: 'absolute', bottom: -10, left: -10,
               width: 160, height: 160, opacity: 0.85,
               filter: 'brightness(0) saturate(100%) invert(65%) sepia(80%) saturate(1200%) hue-rotate(2deg) brightness(1.1)',
@@ -269,7 +269,7 @@ export default function Recognition() {
             }} />
 
             {/* Botanical — bottom-right */}
-            <img src="/48945.svg" aria-hidden="true" style={{
+            <img src="/48945.svg" alt="" aria-hidden="true" style={{
               position: 'absolute', bottom: -10, right: -10,
               width: 160, height: 160, opacity: 0.85,
               filter: 'brightness(0) saturate(100%) invert(65%) sepia(80%) saturate(1200%) hue-rotate(2deg) brightness(1.1)',

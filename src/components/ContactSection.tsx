@@ -25,13 +25,9 @@ function HawkSprite({ mode, direction }: { mode: HawkMode; direction: 'left' | '
   const [frameIdx, setFrameIdx] = useState(0);
 
   useEffect(() => {
-    if (mode !== 'flying') { setFrameIdx(0); return; }
+    if (mode !== 'flying') return;
     const id = setInterval(() => {
-      setFrameIdx(i => {
-        const next = (i + 1) % 4;
-        console.log('Frame cycling, current frame:', next);
-        return next;
-      });
+      setFrameIdx(i => (i + 1) % 4);
     }, 110);
     return () => clearInterval(id);
   }, [mode]);
@@ -91,8 +87,6 @@ export default function ContactSection() {
   // format would leave an invalid email silently un-clickable with no way
   // to surface why.
   const isDisabled   = !isFormFilled || formState === 'sending' || formState === 'sent';
-
-  useEffect(() => { console.log('Hawk phase:', hawkPhase); }, [hawkPhase]);
 
   /* ── land hawk: settle bounce then float ── */
   const landHawk = useCallback(() => {
@@ -157,7 +151,6 @@ export default function ContactSection() {
     const section = sectionRef.current;
     if (!section) return;
     const obs = new IntersectionObserver(([entry]) => {
-      console.log('Contact section intersecting:', entry.isIntersecting);
       if (entry.isIntersecting && !hasEntered.current) {
         hasEntered.current = true;
         flyIn();
