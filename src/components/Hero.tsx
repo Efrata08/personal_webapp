@@ -14,6 +14,34 @@ const PHRASES = [
 const BRASS_FILTER =
   'invert(58%) sepia(60%) saturate(500%) hue-rotate(5deg) brightness(95%)';
 
+// deterministic PRNG (not Math.random()) so server and client render the same
+// particle layout — avoids a hydration mismatch on first paint.
+function seededRandom(seed: number) {
+  let t = seed;
+  return () => {
+    t += 0x6D2B79F5;
+    let r = Math.imul(t ^ (t >>> 15), 1 | t);
+    r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r;
+    return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+// embers cluster near the lanterns (left) and thin out toward the name/photo (right)
+const rand = seededRandom(1337);
+const EMBERS = Array.from({ length: 22 }, () => {
+  const left = Math.pow(rand(), 2.4) * 58; // skewed toward 0%, capped ~58%
+  return {
+    left,
+    top: 8 + rand() * 84,
+    size: 2 + rand() * 3.2,
+    duration: 8 + rand() * 9,
+    delay: -rand() * 16,
+    rise: 90 + rand() * 110,
+    drift: (rand() - 0.5) * 40,
+    peakOpacity: 0.35 + rand() * 0.45,
+  };
+});
+
 export default function Hero() {
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [phraseVisible, setPhraseVisible] = useState(false);
@@ -59,14 +87,49 @@ export default function Hero() {
         .hero-fade-r        { animation: fadeUp 0.8s ease 1s   both; }
         .hero-scroll-text   { animation: fadeUp 0.8s ease 2s both; }
 
-        @media (max-width: 768px) {
-          .hero-grid       { grid-template-columns: 1fr !important; }
-          .hero-left       { align-items: center !important; text-align: center; padding-left: 0 !important; }
-          .hero-right      { justify-content: center; margin-top: 48px; }
+        /* nudge the whole composition (text + photo, together — a single
+           transform on the shared parent so their relative spacing is untouched) */
+        .hero-grid { transform: translateX(28px); }
+
+        /* lanterns float in the margin left of hero-left. That margin only
+           reaches the ~230px the original design needs once the viewport is
+           wide enough for the centered maxWidth:945 grid to have that much
+           space to spare (~1461px) — full original size/position kicks in
+           right after that, no transform needed. Below it, keep them close to
+           full size rather than shrinking to nothing; the tightest widths
+           (768–1017px, where margin is a flat ~24px) will clip modestly. */
+        .hero-lantern-1 { top: -26px;  left: -80px; width: 145px; }
+        .hero-lantern-2 { top: 190px;  left: -35px; width: 100px; }
+
+        @media (min-width: 1500px) {
+          .hero-lantern-1 { top: -44px; left: -230px; width: 184px; }
+          .hero-lantern-2 { top: 178px; left: -106px; width: 126px; }
         }
+
+        @media (max-width: 768px) {
+          .hero-section    { padding: 0 20px !important; }
+          .hero-grid       { grid-template-columns: 1fr !important; transform: none !important; }
+          .hero-left       { align-items: center !important; text-align: center; padding: 0 !important; }
+          .hero-right      { justify-content: center !important; margin-top: 48px; }
+          .hero-lantern-1  { top: -18px; left: 4px;  width: 42px; }
+          .hero-lantern-2  { top: 258px; left: 24px; width: 32px; }
+        }
+
+        /* fixed-pixel photo frame — scale down (not just visually, via zoom so
+           layout width shrinks too) once it no longer fits beside the stacked text */
+        @media (max-width: 480px) { .hero-photo-box { zoom: 0.85; } }
+        @media (max-width: 420px) { .hero-photo-box { zoom: 0.72; } }
+        @media (max-width: 375px) { .hero-photo-box { zoom: 0.65; } }
+        @media (max-width: 340px) { .hero-photo-box { zoom: 0.58; } }
 
         @media (min-width: 1400px) {
           .hero-section { padding-right: 80px !important; }
+        }
+
+        /* the translateX+scale flourish only has room to breathe on very wide screens
+           (200px original nudge + the 28px whole-composition shift above) */
+        @media (min-width: 1700px) {
+          .hero-grid { transform: translateX(228px) scale(1.3); }
         }
 
         @keyframes flicker1 {
@@ -82,9 +145,54 @@ export default function Hero() {
           55%      { opacity: 0.88; filter: drop-shadow(0 8px 20px rgba(212,160,32,0.3))  brightness(0.92); }
           75%      { opacity: 0.96; filter: drop-shadow(0 8px 20px rgba(212,160,32,0.45)) brightness(1);    }
         }
+
+        /* ── ambient lamplight: soft downward rays + drifting embers ── */
+        .hero-ambient {
+          position: absolute;
+          inset: 0;
+          z-index: -1;
+          pointer-events: none;
+          overflow: hidden;
+        }
+        .hero-rays {
+          position: absolute;
+          top: -15%;
+          left: -10%;
+          width: 60%;
+          height: 150%;
+          background: linear-gradient(160deg,
+            rgba(212,160,32,0.16) 0%,
+            rgba(212,160,32,0.07) 30%,
+            transparent 65%);
+          filter: blur(24px);
+          transform: rotate(-8deg);
+        }
+
+        .hero-ember {
+          position: absolute;
+          bottom: 0;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(232,190,90,0.95), rgba(200,148,26,0.25) 70%, transparent 100%);
+          box-shadow: 0 0 6px 1px rgba(212,160,32,0.5);
+          animation-name: heroEmberRise;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
+        }
+        @keyframes heroEmberRise {
+          0%   { transform: translate(0, 0) scale(0.85);              opacity: 0; }
+          15%  { opacity: var(--peak-opacity, 0.6); }
+          50%  { transform: translate(calc(var(--drift, 0) * 1px), calc(var(--rise, 100) * -0.5px)) scale(1); }
+          85%  { opacity: var(--peak-opacity, 0.6); }
+          100% { transform: translate(calc(var(--drift, 0) * 1px), calc(var(--rise, 100) * -1px)) scale(0.8); opacity: 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero-ember { animation: none; opacity: 0; }
+        }
       `}</style>
 
       <section
+        id="home"
         className="hero-section"
         style={{
           backgroundColor: '#0F2440',
@@ -92,15 +200,38 @@ export default function Hero() {
           display: 'flex',
           alignItems: 'center',
           padding: '0 48px 0 24px',
+          position: 'relative',
+          isolation: 'isolate',
         }}
       >
+        {/* ambient lamplight — soft rays + drifting embers, behind the text/photo */}
+        <div className="hero-ambient" aria-hidden="true">
+          <div className="hero-rays" />
+          {EMBERS.map((e, i) => (
+            <span
+              key={i}
+              className="hero-ember"
+              style={{
+                left: `${e.left}%`,
+                top: `${e.top}%`,
+                width: e.size,
+                height: e.size,
+                animationDuration: `${e.duration}s`,
+                animationDelay: `${e.delay}s`,
+                ['--rise' as string]: e.rise,
+                ['--drift' as string]: e.drift,
+                ['--peak-opacity' as string]: e.peakOpacity,
+              } as React.CSSProperties}
+            />
+          ))}
+        </div>
+
         <div
           className="hero-grid"
           style={{
             maxWidth: 945,
             width: '100%',
             margin: '0 auto',
-            transform: 'translateX(200px) scale(1.3)',
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             alignItems: 'center',
@@ -126,8 +257,8 @@ export default function Hero() {
             </p>
 
             {/* lanterns near welcome line */}
-            <img src="/lantern-final.png" alt="" aria-hidden="true" style={{ position: 'absolute', top: -40, left: -230, width: 165, height: 'auto', pointerEvents: 'none', animation: 'flicker1 3s ease-in-out infinite', zIndex: 1 }} />
-            <img src="/lantern-final.png" alt="" aria-hidden="true" style={{ position: 'absolute', top: 180, left: -126, width: 113, height: 'auto', pointerEvents: 'none', animation: 'flicker2 4s ease-in-out infinite 0.8s', zIndex: 1 }} />
+            <img className="hero-lantern-1" src="/lantern-final.png" alt="" aria-hidden="true" style={{ position: 'absolute', height: 'auto', pointerEvents: 'none', animation: 'flicker1 3s ease-in-out infinite', zIndex: 1, transition: 'top 0.2s, left 0.2s, width 0.2s' }} />
+            <img className="hero-lantern-2" src="/lantern-final.png" alt="" aria-hidden="true" style={{ position: 'absolute', height: 'auto', pointerEvents: 'none', animation: 'flicker2 4s ease-in-out infinite 0.8s', zIndex: 1, transition: 'top 0.2s, left 0.2s, width 0.2s' }} />
 
             {/* "hi, the name is" */}
             <p
@@ -170,7 +301,7 @@ export default function Hero() {
                     : 'var(--font-lora), Georgia, serif',
                   fontStyle: 'italic',
                   fontSize: isEthiopian ? 21.75 : 19.5,
-                  color: isEthiopian ? '#D4A020' : '#0F2440',
+                  color: isEthiopian ? '#D4A020' : '#8A7A64',
                 }}
               >
                 {phrase}
@@ -199,7 +330,7 @@ export default function Hero() {
             className="hero-fade-r hero-right"
             style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}
           >
-            <div style={{ position: 'relative', width: 439, height: 497 }}>
+            <div className="hero-photo-box" style={{ position: 'relative', width: 439, height: 497 }}>
 
               {/* ── SVG frame ── */}
               <svg
@@ -261,6 +392,7 @@ export default function Hero() {
                   src="/newImage.jpg"
                   alt="Efrata"
                   fill
+                  sizes="(max-width: 480px) 200px, 328px"
                   style={{ objectFit: 'cover', objectPosition: 'center 30%' }}
                   priority
                 />

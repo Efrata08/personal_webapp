@@ -58,18 +58,30 @@ export default function Recognition() {
   return (
     <>
       <style>{`
+        .recognition-wrapper {
+          position: relative;
+          z-index: 1;
+          width: 100%;
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 24px;
+        }
+        .recognition-envelope { display: none; }
+
         .letter-card {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%) scale(0.3);
+          position: relative;
+          width: 100%;
+          max-width: 420px;
           opacity: 0;
-          transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+          transform: translateY(28px);
+          transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
           background: #F5EDE0;
           border: 1px solid #C4B090;
           border-radius: 2px;
-          padding: 47px 36px;
-          width: 312px;
+          padding: clamp(28px, 5vw, 47px) clamp(22px, 5vw, 36px);
           box-sizing: border-box;
           box-shadow: 3px 5px 16px rgba(0,0,0,0.12);
           overflow: hidden;
@@ -90,18 +102,54 @@ export default function Recognition() {
           background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        .letter-card:nth-child(1) { z-index: 0; transition-delay: 0s;    }
-        .letter-card:nth-child(2) { z-index: 0; transition-delay: 0.15s; }
-        .letter-card:nth-child(3) { z-index: 0; transition-delay: 0.3s;  }
-        .letter-card:nth-child(4) { z-index: 0; transition-delay: 0.45s; }
+        .letter-card:nth-child(1) { transition-delay: 0s;   }
+        .letter-card:nth-child(2) { transition-delay: 0.1s; }
+        .letter-card:nth-child(3) { transition-delay: 0.2s; }
+        .letter-card:nth-child(4) { transition-delay: 0.3s; }
 
-        .spread .letter-card:nth-child(1) { transform: translate(-735px, -50%) rotate(-14deg); opacity: 1; }
-        .spread .letter-card:nth-child(2) { transform: translate(-470px, -55%) rotate(-6deg);  opacity: 1; }
-        .spread .letter-card:nth-child(3) { transform: translate(205px,  -55%) rotate(6deg);   opacity: 1; }
-        .spread .letter-card:nth-child(4) { transform: translate(505px,  -50%) rotate(14deg);  opacity: 1; }
+        .spread .letter-card { opacity: 1; transform: translateY(0); }
+
+        /* ── tablet: two-up grid, no fan/rotation — plenty of room, no overlap math needed ── */
+        @media (min-width: 768px) {
+          .recognition-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            height: auto;
+          }
+          .letter-card { max-width: none; }
+        }
+
+        /* ── desktop: original fan-out effect, spread scaled to viewport so cards never clip ── */
+        @media (min-width: 1500px) {
+          .recognition-wrapper {
+            display: flex;
+            height: 430px;
+          }
+          .letter-card {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 0;
+            width: 312px;
+            transform: translate(-50%, -50%) scale(0.3);
+            transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+          }
+          .letter-card:nth-child(1) { transition-delay: 0s;    }
+          .letter-card:nth-child(2) { transition-delay: 0.15s; }
+          .letter-card:nth-child(3) { transition-delay: 0.3s;  }
+          .letter-card:nth-child(4) { transition-delay: 0.45s; }
+
+          .spread .letter-card:nth-child(1) { transform: translate(clamp(-735px, -38vw, -560px), -50%) rotate(-14deg); opacity: 1; }
+          .spread .letter-card:nth-child(2) { transform: translate(clamp(-470px, -24.5vw, -360px), -55%) rotate(-6deg); opacity: 1; }
+          .spread .letter-card:nth-child(3) { transform: translate(clamp(160px, 10.7vw, 205px), -55%) rotate(6deg); opacity: 1; }
+          .spread .letter-card:nth-child(4) { transform: translate(clamp(390px, 26.3vw, 505px), -50%) rotate(14deg); opacity: 1; }
+
+          .recognition-envelope { display: block; }
+        }
       `}</style>
 
-      <section style={{
+      <section id="recognition" style={{
         backgroundColor: '#E8DCC8',
         display: 'flex',
         flexDirection: 'column',
@@ -127,21 +175,8 @@ export default function Recognition() {
           recognition & achievements
         </p>
 
-        {/* Layout wrapper — letters fan out from here */}
-        <div
-          ref={wrapperRef}
-          style={{
-            position: 'relative',
-            zIndex: 1,
-            width: '100%',
-            maxWidth: 1200,
-            height: 430,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto',
-          }}
-        >
+        {/* Layout wrapper — letters fan out from here on wide screens, grid/stack on smaller ones */}
+        <div ref={wrapperRef} className="recognition-wrapper">
           {/* Letter cards */}
           {LETTERS.map((letter, i) => (
             <div key={i} className="letter-card">
@@ -201,8 +236,8 @@ export default function Recognition() {
             </div>
           ))}
 
-          {/* Envelope + botanical accents */}
-          <div style={{ position: 'relative', zIndex: 3, flexShrink: 0, width: 380, height: 260 }}>
+          {/* Envelope + botanical accents — desktop only, hidden below 1500px */}
+          <div className="recognition-envelope" style={{ position: 'relative', zIndex: 3, flexShrink: 0, width: 380, height: 260 }}>
 
             {/* Botanical — top-left */}
             <img src="/48945.svg" aria-hidden="true" style={{

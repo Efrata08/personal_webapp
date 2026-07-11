@@ -93,6 +93,9 @@ export default function ContactSection() {
       setTimeout(() => {
         el.style.transition = 'none';
         el.style.transform  = ''; // clear so CSS animation takes over
+        el.style.animation  = ''; // release the inline 'none' set in handleSubmit —
+                                   // otherwise it permanently blocks cs-hawk-float on every future landing
+        void el.offsetHeight;
         setIsFloating(true);
         setShowGlow(true);
       }, 175);
@@ -175,11 +178,11 @@ export default function ContactSection() {
 
     try {
       // TODO: replace with Formspree / EmailJS / Resend
-      await new Promise(resolve => setTimeout(resolve, 1800));
+      await new Promise(resolve => setTimeout(resolve, 1100));
       // Simulated success — remove when wiring real email
 
       setFormState('sent');
-      setTimeout(() => setShowConfirmation(true), 1400);
+      setTimeout(() => setShowConfirmation(true), 400);
     } catch {
       setFormState('error');
       setHawkPhase('perched');
@@ -191,6 +194,7 @@ export default function ContactSection() {
         errEl.style.opacity    = '1';
         setTimeout(() => {
           errEl.style.transition = 'none';
+          errEl.style.animation  = ''; // release the inline 'none' set in handleSubmit
           setIsFloating(true);
           setShowGlow(true);
         }, 500);
@@ -266,7 +270,7 @@ export default function ContactSection() {
         .cs-title {
           font-family: var(--font-playfair), Georgia, serif;
           font-style: italic;
-          font-size: 48px;
+          font-size: clamp(32px, 6vw, 48px);
           color: var(--color-parchment);
           margin: 0 0 16px;
         }
@@ -672,6 +676,18 @@ export default function ContactSection() {
           .cs-right        { width: 100%; }
         }
 
+        @media (max-width: 420px) {
+          .cs-card { padding: 36px 28px; }
+        }
+
+        /* ── medium: two columns still fit, but the fixed 400px+150px gap
+           leaves the form too little room — tighten both ── */
+        @media (min-width: 821px) and (max-width: 1100px) {
+          .cs-columns { gap: 48px; }
+          .cs-left    { flex: 0 0 240px; }
+          .hawk-img   { max-width: 240px; }
+        }
+
         /* ── reduced motion ── */
         @media (prefers-reduced-motion: reduce) {
           .cs-hawk-float     { animation: none !important; }
@@ -683,7 +699,7 @@ export default function ContactSection() {
         }
       `}</style>
 
-      <section ref={sectionRef} className="contact-section">
+      <section id="contact" ref={sectionRef} className="contact-section">
 {/* botanical vines */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -781,8 +797,8 @@ export default function ContactSection() {
 
                   <p className="social-label">or reach me directly</p>
                   <div className="social-pills">
-                    <a href="https://linkedin.com/in/YOURURL" target="_blank" rel="noopener noreferrer" className="social-pill">LinkedIn</a>
-                    <a href="mailto:YOUREMAIL" target="_blank" rel="noopener noreferrer" className="social-pill">Email</a>
+                    <a href="https://www.linkedin.com/in/efrata-gbogale/" target="_blank" rel="noopener noreferrer" className="social-pill">LinkedIn</a>
+                    <a href="mailto:ebogale@brynmawr.edu" className="social-pill">Email</a>
                     <a href="https://github.com/Efrata08" target="_blank" rel="noopener noreferrer" className="social-pill">GitHub</a>
                   </div>
                   <div className="social-divider" />

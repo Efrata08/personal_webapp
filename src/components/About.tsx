@@ -132,9 +132,17 @@ export default function About() {
           .about-grid  { grid-template-columns: 1fr !important; }
           .about-right { display: none !important; }
         }
+
+        /* the typewriter assembly is a hardcoded 380px wide — between 769px and
+           ~1133px viewport its 2fr grid column is narrower than that, so shrink it
+           via zoom (which, unlike transform:scale, shrinks the layout box too) */
+        @media (min-width: 769px) and (max-width: 1133px) {
+          .about-right-inner { zoom: 0.6; }
+        }
       `}</style>
 
       <section
+        id="about"
         ref={sectionRef}
         className="about-section"
         style={{ backgroundColor: '#E8DCC8' }}
@@ -211,7 +219,7 @@ export default function About() {
                 ViewBox 511.6×511.6 rendered 280px → scale 0.547.
                 Carriage line ≈ y=181 in viewBox → ~99px from top rendered.
               */}
-              <div style={{ width: 380, position: 'relative' }}>
+              <div className="about-right-inner" style={{ width: 380, position: 'relative' }}>
 
                 {/* Typewriter SVG with mahogany filter */}
                 <div

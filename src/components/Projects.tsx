@@ -100,12 +100,29 @@ export default function Projects() {
           opacity: 0.3;
           cursor: default;
         }
+
+        .projects-slide {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+        .project-left {
+          padding: 32px 24px;
+        }
+        .project-right {
+          min-height: 200px;
+        }
+        @media (min-width: 768px) {
+          .projects-slide  { grid-template-columns: 1fr 1fr; }
+          .project-left    { padding: 48px 56px; }
+          .project-right   { min-height: 0; }
+        }
       `}</style>
 
       <section
+        id="projects"
         ref={sectionRef}
         className="projects-section"
-        style={{ backgroundColor: '#E8DCC8', padding: '56px' }}
+        style={{ backgroundColor: '#E8DCC8', padding: 'clamp(24px, 6vw, 56px)' }}
       >
         {/* Eyebrow */}
         <p style={{
@@ -142,17 +159,15 @@ export default function Projects() {
               {PROJECTS.map((project, i) => (
                 <div
                   key={i}
+                  className="projects-slide"
                   style={{
                     flex: '0 0 100%',
                     width: '100%',
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
                   }}
                 >
                   {/* Left: text */}
-                  <div style={{
+                  <div className="project-left" style={{
                     backgroundColor: '#E8DCC8',
-                    padding: '48px 56px',
                     display: 'flex',
                     flexDirection: 'column',
                     boxSizing: 'border-box',
@@ -171,7 +186,7 @@ export default function Projects() {
                     <h3 style={{
                       fontFamily: 'var(--font-playfair), Georgia, serif',
                       fontStyle: 'italic',
-                      fontSize: 36,
+                      fontSize: 'clamp(26px, 4.5vw, 36px)',
                       lineHeight: 1.1,
                       color: '#0F2440',
                       margin: '0 0 20px 0',
@@ -184,7 +199,7 @@ export default function Projects() {
 
                     <p style={{
                       fontFamily: 'var(--font-lora), Georgia, serif',
-                      fontSize: 19,
+                      fontSize: 'clamp(16px, 2vw, 19px)',
                       lineHeight: 1.85,
                       color: '#5A4A38',
                       flex: 1,
@@ -220,7 +235,7 @@ export default function Projects() {
                   </div>
 
                   {/* Right: navy placeholder */}
-                  <div style={{
+                  <div className="project-right" style={{
                     backgroundColor: '#0F2440',
                     display: 'flex',
                     alignItems: 'center',

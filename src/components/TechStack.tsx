@@ -43,7 +43,7 @@ export default function TechStack() {
         }
       `}</style>
 
-      <section style={{ backgroundColor: '#0F2440', padding: '24px 0', overflow: 'hidden' }}>
+      <section id="stack" style={{ backgroundColor: '#0F2440', padding: '24px 0', overflow: 'hidden' }}>
 
         {/* Eyebrow */}
         <p style={{
