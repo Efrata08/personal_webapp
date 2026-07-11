@@ -6,7 +6,6 @@ const LINKS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'projects', label: 'Projects' },
-  { id: 'stack', label: 'Stack' },
   { id: 'recognition', label: 'Recognition' },
   { id: 'hobbies', label: 'Hobbies' },
   { id: 'contact', label: 'Contact' },
@@ -14,7 +13,9 @@ const LINKS = [
 
 // each section's own background — the nav switches its palette to match
 // whichever one currently sits behind it, rather than one look for both.
-const NAVY_SECTIONS = new Set(['home', 'stack', 'hobbies', 'contact']);
+// ('stack' has no nav entry anymore — Projects stays the active link while
+// scrolling past it, since the two now sit close together as one unit.)
+const NAVY_SECTIONS = new Set(['home', 'hobbies', 'contact']);
 
 export default function Nav() {
   const [active, setActive] = useState('home');
@@ -40,7 +41,11 @@ export default function Nav() {
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    // Recognition is short enough that the default block:'start' leaves most
+    // of the viewport showing Hobbies underneath it — center it instead so
+    // more of the actual section is on screen relative to what follows.
+    const block = id === 'recognition' ? 'center' : 'start';
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block });
     // otherwise the clicked link keeps keyboard focus, which keeps
     // :focus-within true and the nav stuck open even after the mouse leaves
     e.currentTarget.blur();

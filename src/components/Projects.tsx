@@ -9,18 +9,20 @@ const PROJECTS = [
     title: 'Fa-ray',
     titleSuffix: ' ፍሬ',
     description:
-      'An offline-first inventory management platform for small independent pharmacies in Ethiopia. It works entirely without internet, operates in Amharic, and is designed for low-end Android devices. Owners can track stock levels, record sales, receive low-stock alerts, and generate customer sale records — all in a single tap flow optimized for busy counter environments. Built through Haverford College\'s incubator program.',
+      "An offline-first inventory management platform for small independent pharmacies in Ethiopia, built through Haverford College's Innovation Incubator. It works entirely without internet, operates in Amharic, and is designed for low-end Android devices — owners can track stock, log sales, get low-stock alerts, and generate customer records in a single tap flow built for busy counters. Currently in the process of deploying and piloting it with real pharmacies in Ethiopia.",
     tags: ['React Native', 'Expo', 'TypeScript'],
     linkLabel: 'GitHub',
+    image: '/fa-ray/screenshot.png',
   },
   {
     number: '02 / 04',
     title: 'Phix',
     titleSuffix: 'Philly',
     description:
-      'Mapped 500K+ Philadelphia 311 infrastructure cases using Gemini Vision AI and a Haversine routing algorithm. Built at Philly Codefest 2026 — civic tech that makes city issues visible.',
+      "A civic reporting platform built at Drexel's Philly Codefest, with both a resident-facing app and a government dashboard so the reporting loop works end to end. Residents snap a photo of an issue and Gemini Vision AI classifies the type and severity, while a custom Haversine-distance algorithm checks it against 500K+ existing Philadelphia 311 cases to catch duplicates instead of clogging the queue. It also surfaces an equity heatmap showing which neighborhoods consistently wait longer for resolution, holding city officials accountable.",
     tags: ['React Native', 'Supabase', 'Gemini AI'],
     linkLabel: 'GitHub',
+    image: '/phixphilly/photo_2026-07-10_21-14-03.jpg',
   },
   {
     number: '03 / 04',
@@ -34,12 +36,13 @@ const PROJECTS = [
   },
   {
     number: '04 / 04',
-    title: 'Alumni Sorter',
-    titleSuffix: '',
+    title: 'Alumni ',
+    titleSuffix: 'Feedback Sorter',
     description:
-      'Email sorting and routing tool for alumni outreach management. Automates categorization so the right messages reach the right people faster.',
-    tags: ['Python'],
+      "Built a background script that automates the working pipeline of Haverford College's alumni office, which was manually checking hundreds of emails a week against Raiser's Edge and logging sentiment by hand. The script pulls emails through the Gmail API, filters out routine noise, then classifies sentiment and giving status (paused, resumed, bequest changes) using DistilBERT and BART for zero-shot classification. Results upload to Google Sheets automatically, along with a weekly trend summary.",
+    tags: ['Python', 'PyTorch'],
     linkLabel: 'GitHub',
+    image: '/alumni/dashboard.png',
   },
 ];
 
@@ -124,7 +127,7 @@ export default function Projects() {
         id="projects"
         ref={sectionRef}
         className="projects-section"
-        style={{ backgroundColor: '#E8DCC8', padding: 'clamp(24px, 6vw, 56px)' }}
+        style={{ backgroundColor: '#E8DCC8', padding: 'clamp(24px, 6vw, 56px) clamp(24px, 6vw, 56px) clamp(12px, 3vw, 24px)' }}
       >
         {/* Eyebrow */}
         <p style={{
@@ -188,10 +191,10 @@ export default function Projects() {
                     <h3 style={{
                       fontFamily: 'var(--font-playfair), Georgia, serif',
                       fontStyle: 'italic',
-                      fontSize: 'clamp(26px, 4.5vw, 36px)',
+                      fontSize: 'clamp(22px, 3.5vw, 30px)',
                       lineHeight: 1.1,
                       color: '#0F2440',
-                      margin: '0 0 20px 0',
+                      margin: '0 0 14px 0',
                     }}>
                       {project.title}
                       {project.titleSuffix && (
@@ -201,11 +204,11 @@ export default function Projects() {
 
                     <p style={{
                       fontFamily: 'var(--font-lora), Georgia, serif',
-                      fontSize: 'clamp(16px, 2vw, 19px)',
-                      lineHeight: 1.85,
+                      fontSize: 'clamp(14.5px, 1.3vw, 16.5px)',
+                      lineHeight: 1.6,
                       color: '#5A4A38',
                       flex: 1,
-                      margin: '0 0 24px 0',
+                      margin: '0 0 16px 0',
                     }}>
                       {project.description}
                     </p>

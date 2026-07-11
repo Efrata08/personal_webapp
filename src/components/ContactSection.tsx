@@ -177,9 +177,15 @@ export default function ContactSection() {
     }
 
     try {
-      // TODO: replace with Formspree / EmailJS / Resend
-      await new Promise(resolve => setTimeout(resolve, 1100));
-      // Simulated success — remove when wiring real email
+      const endpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
+      if (!endpoint) throw new Error('Formspree endpoint not configured');
+
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+      if (!res.ok) throw new Error('Formspree request failed');
 
       setFormState('sent');
       setTimeout(() => setShowConfirmation(true), 400);

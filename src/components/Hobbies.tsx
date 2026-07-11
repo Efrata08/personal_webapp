@@ -51,7 +51,7 @@ const HOBBIES: {
     eyebrow: 'identity & roots',
     title: 'Ethiopia, ',
     titleEm: 'always',
-    body: "I grew up carrying Addis Abeba with me everywhere. The coffee ceremonies, the paintings of women in habesha kemis, the jazz that sounds like it was made for slow mornings.",
+    body: "I grew up in Addis, streets full of people (and vendors), doro wat after long fasting seasons, sitting through the full coffee ceremony, kirar sessions with my sister. The communal holidays, the life we lead as together... it's something I will forever carry with me",
     collage: [
       { top:  65, right:  58, w: 264, h: 330, rot: -5, z: 1, src: '/Ethiopian/photo_2026-06-20_01-27-07.jpg' },
       { top:  38, right: 220, w: 215, h: 264, rot:  4, z: 2, src: '/Ethiopian/photo_2026-06-20_01-27-15.jpg' },
@@ -63,9 +63,9 @@ const HOBBIES: {
     label: 'CAMERA',
     hourIndex: 3,
     eyebrow: 'photography',
-    title: 'The digicam ',
-    titleEm: 'slows me down',
-    body: "I bought a digital camera and it changed how I see things. I shoot candid moments, textures, quiet streets — things I'd walk past otherwise.",
+    title: 'Everything, ',
+    titleEm: 'everyone',
+    body: "I take pictures of whatever is in front of me, mostly on my phone or my beat-up Canon digicam from the early 2000s. Slowed down a bit after getting my phone robbed mid-sunrise-photo, but I still can't help snapping things.",
     collage: [
       { top:  87, right:  59, w: 248, h: 297, rot:  6, z: 1, src: '/camera/photo_2026-06-20_02-31-32.jpg' },
       { top: 189, right: 211, w: 198, h: 248, rot: -4, z: 2, src: '/camera/photo_2026-06-20_02-32-00.jpg' },
@@ -79,7 +79,7 @@ const HOBBIES: {
     eyebrow: 'people & home',
     title: 'Hours on ',
     titleEm: 'the phone',
-    body: "My favourite hobby is a phone call that stretches for hours. Talking to my family and friends — really talking, unhurried — is something I'd choose over almost anything else.",
+    body: "My favorite hobby is a phone call that stretches for hours. Family scattered across time zones, siblings I'm mostly watching grow up through a screen, friends scattered across different universities with their own study-abroad stories (or uni-life crises.)",
     collage: [
       { top:  87, right:  60, w: 231, h: 281, rot: -7, z: 1, src: '/HoursOnPhone/photo_2026-06-20_02-02-38.jpg' },
       { top: 199, right: 201, w: 190, h: 240, rot:  5, z: 2, src: '/HoursOnPhone/photo_2026-06-20_02-03-02.jpg' },
@@ -92,7 +92,7 @@ const HOBBIES: {
     eyebrow: 'reading',
     title: 'Lost in ',
     titleEm: 'fantasy worlds',
-    body: "I disappear into long fantasy series — the world-building, the lore, the way a great author makes you genuinely grieve a fictional character.",
+    body: "I love reading long fantasy books; I binge an entire series in under two weeks, get way too attached to the world, and once I'm done, forget everything and move straight to the next one. I never re-read, no matter how good the book (sorry, not sorry.)",
     collage: [
       { top:  77, right:  59, w: 240, h: 289, rot:  8, z: 1, src: '/books/photo_2026-06-20_02-16-04.jpg' },
       { top: 188, right: 206, w: 198, h: 256, rot: -3, z: 2, src: '/books/55987278.jpg' },
@@ -187,7 +187,7 @@ export default function Hobbies() {
           .hobbies-idle-inner  { flex-direction: row; text-align: left; padding: 48px 56px; }
           .hobbies-idle-text   { align-items: flex-start !important; }
           .hobbies-vine        { display: block; }
-          .hobbies-hobby-inner { padding: 40px 32px 40px 156px; }
+          .hobbies-hobby-inner { padding: 40px 32px 40px 100px; }
         }
 
         /* the collage needs real spare width beside the 380px-capped text (worst
@@ -199,13 +199,13 @@ export default function Hobbies() {
            on ordinary laptops, growing to full size once there's genuinely
            enough width to spare (~1600px). */
         @media (min-width: 1280px) and (max-width: 1439px) {
-          .hobby-collage-wrap { display: block; transform: scale(0.462); }
+          .hobby-collage-wrap { display: block; transform: scale(0.485); }
         }
         @media (min-width: 1440px) and (max-width: 1599px) {
-          .hobby-collage-wrap { display: block; transform: scale(0.77); }
+          .hobby-collage-wrap { display: block; transform: scale(0.809); }
         }
         @media (min-width: 1600px) {
-          .hobby-collage-wrap { display: block; transform: scale(1.1); }
+          .hobby-collage-wrap { display: block; transform: scale(1.155); }
         }
       `}</style>
 
@@ -285,8 +285,8 @@ export default function Hobbies() {
             <g ref={hourRef}>
               <image
                 href="/clockHand.svg"
-                x={128} y={60}
-                width={12} height={81}
+                x={128} y={71}
+                width={12} height={70}
                 style={{ filter: 'brightness(0) invert(1)' }}
               />
             </g>
@@ -295,8 +295,8 @@ export default function Hobbies() {
             <g ref={minuteRef}>
               <image
                 href="/clockHand.svg"
-                x={127} y={37}
-                width={15} height={105}
+                x={127} y={52}
+                width={15} height={90}
                 style={{ filter: 'brightness(0) invert(1)' }}
               />
             </g>
@@ -396,7 +396,7 @@ export default function Hobbies() {
                 fontFamily: 'var(--font-playfair), Georgia, serif',
                 fontStyle: 'italic', fontSize: 'clamp(32px, 6vw, 54px)',
                 color: '#E8DCC8', margin: '0 0 16px 0', lineHeight: 1.2,
-                maxWidth: 380,
+                maxWidth: 480,
               }}>
                 {hobby.title}<em style={{ color: '#D4A020' }}>{hobby.titleEm}</em>
               </h3>
@@ -404,7 +404,7 @@ export default function Hobbies() {
               <p style={{
                 fontFamily: 'var(--font-lora), Georgia, serif',
                 fontSize: 'clamp(16px, 2.4vw, 20px)', color: '#8AAABB', lineHeight: 1.95,
-                maxWidth: 380, margin: 0,
+                maxWidth: 480, margin: 0,
               }}>
                 {hobby.body}
               </p>

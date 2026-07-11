@@ -7,29 +7,29 @@ const LETTERS = [
     stat: 'Top 5',
     sub: 'of 4,700+ participants',
     title: 'Wells Fargo × Global Career Accelerator',
-    body: 'Placed top 5 of 4,700+. The only woman in the top 10.',
+    body: 'Placed top 5 of 4,700+ teams.',
     tag: 'fintech · 2026',
   },
   {
-    stat: 'Cohort',
-    sub: 'selected member',
-    title: 'AI4ALL Ignite Program',
-    body: 'Building ML model for health vulnerability by US county.',
-    tag: 'machine learning · 2026',
+    stat: 'Founder',
+    sub: 'selected fellow',
+    title: 'HBS Foundry Bootcamp',
+    body: '4-week Harvard program for early-stage founders, pathway to $100K investment.',
+    tag: 'entrepreneurship · 2026',
   },
   {
-    stat: 'Grant',
-    sub: 'incubator award',
-    title: 'Haverford College Incubator',
-    body: 'Funded Fa-ray ፍሬ — offline pharmacy software for Ethiopia.',
-    tag: 'entrepreneurship · 2025',
+    stat: 'Delegate',
+    sub: 'youth representative',
+    title: 'U.S. Department of State',
+    body: 'Represented Ethiopia in a fully funded exchange program with youth from 18 African countries.',
+    tag: 'diplomacy · 2023',
   },
   {
-    stat: 'Global',
-    sub: 'exchange program',
-    title: 'Bates College Exchange',
-    body: 'Selected for competitive academic exchange program.',
-    tag: 'academic · 2025',
+    stat: 'National Exam',
+    sub: 'top 100 of 700,000+',
+    title: 'Ethiopian National Exam',
+    body: 'Ranked in the top 100 nationally out of over 700,000 students.',
+    tag: 'academic · 2024',
   },
 ];
 
@@ -124,7 +124,7 @@ export default function Recognition() {
         @media (min-width: 1500px) {
           .recognition-wrapper {
             display: flex;
-            height: 430px;
+            height: 370px;
           }
           .letter-card {
             position: absolute;
@@ -140,10 +140,10 @@ export default function Recognition() {
           .letter-card:nth-child(3) { transition-delay: 0.3s;  }
           .letter-card:nth-child(4) { transition-delay: 0.45s; }
 
-          .spread .letter-card:nth-child(1) { transform: translate(clamp(-735px, -38vw, -560px), -50%) rotate(-14deg); opacity: 1; }
-          .spread .letter-card:nth-child(2) { transform: translate(clamp(-470px, -24.5vw, -360px), -55%) rotate(-6deg); opacity: 1; }
-          .spread .letter-card:nth-child(3) { transform: translate(clamp(160px, 10.7vw, 205px), -55%) rotate(6deg); opacity: 1; }
-          .spread .letter-card:nth-child(4) { transform: translate(clamp(390px, 26.3vw, 505px), -50%) rotate(14deg); opacity: 1; }
+          .spread .letter-card:nth-child(1) { transform: translate(clamp(-910px, -38vw, -730px), -50%) translateY(-60px) rotate(-14deg); opacity: 1; }
+          .spread .letter-card:nth-child(2) { transform: translate(clamp(-600px, -24.5vw, -480px), -55%) translateY(-60px) rotate(-6deg); opacity: 1; }
+          .spread .letter-card:nth-child(3) { transform: translate(clamp(165px, 10.7vw, 210px), -55%) translateY(-60px) rotate(6deg); opacity: 1; }
+          .spread .letter-card:nth-child(4) { transform: translate(clamp(430px, 26.3vw, 545px), -50%) translateY(-60px) rotate(14deg); opacity: 1; }
 
           .recognition-envelope { display: block; }
         }
