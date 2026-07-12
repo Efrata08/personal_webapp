@@ -287,7 +287,6 @@ export default function Hobbies() {
                 href="/clockHand.svg"
                 x={128} y={71}
                 width={12} height={70}
-                style={{ filter: 'brightness(0) invert(1)' }}
               />
             </g>
 
@@ -297,7 +296,6 @@ export default function Hobbies() {
                 href="/clockHand.svg"
                 x={127} y={52}
                 width={15} height={90}
-                style={{ filter: 'brightness(0) invert(1)' }}
               />
             </g>
 
