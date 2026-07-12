@@ -7,17 +7,17 @@ type HawkPhase = 'hidden' | 'flying-in' | 'perched' | 'flying-out';
 type FormState = 'idle' | 'sending' | 'sent' | 'error';
 
 const HAWK_FRAMES_LEFT = [
-  '/hawk/1-right.png',
-  '/hawk/2-right.png',
-  '/hawk/3-right.png',
-  '/hawk/4-right.png',
+  '/Hawk/1-right.png',
+  '/Hawk/2-right.png',
+  '/Hawk/3-right.png',
+  '/Hawk/4-right.png',
 ];
 
 const HAWK_FRAMES_RIGHT = [
-  '/hawk/1-right.png',
-  '/hawk/2-right.png',
-  '/hawk/3-right.png',
-  '/hawk/4-right.png',
+  '/Hawk/1-right.png',
+  '/Hawk/2-right.png',
+  '/Hawk/3-right.png',
+  '/Hawk/4-right.png',
 ];
 
 /* ── HawkSprite ──────────────────────────────────────────── */
@@ -33,7 +33,7 @@ function HawkSprite({ mode, direction }: { mode: HawkMode; direction: 'left' | '
   }, [mode]);
 
   const frames = direction === 'right' ? HAWK_FRAMES_RIGHT : HAWK_FRAMES_LEFT;
-  const src = mode === 'perched' ? '/hawk/hawk-perched.png' : frames[frameIdx];
+  const src = mode === 'perched' ? '/Hawk/hawk-perched.png' : frames[frameIdx];
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
