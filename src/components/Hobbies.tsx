@@ -349,7 +349,7 @@ export default function Hobbies() {
                 fontSize: 17, lineHeight: 1.9,
                 color: '#8AAABB', maxWidth: 460, margin: '0 0 28px 0',
               }}>
-                although it is not exactly standard for a CS portfolio, I choose to share what I actually do with my time — because time is the most precious gift we have, and what you spend it on says everything about you.
+                not exactly standard for a CS portfolio, but here&apos;s what I actually do with my time when I&apos;m not building things.
               </p>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
