@@ -51,7 +51,7 @@ const HOBBIES: {
     eyebrow: 'identity & roots',
     title: 'Ethiopia, ',
     titleEm: 'always',
-    body: "I grew up in Addis, streets full of people (and vendors), doro wat after long fasting seasons, sitting through the full coffee ceremony, kirar sessions with my sister. The communal holidays, the life we lead as together... it's something I will forever carry with me",
+    body: "I grew up in Addis, streets full of people (and vendors), doro wat after long fasting seasons, sitting through the full coffee ceremony, kirar sessions with my sister. The communal holidays, the life we lead as together... it's something I will forever carry with me.",
     collage: [
       { top:  65, right:  58, w: 264, h: 330, rot: -5, z: 1, src: '/Ethiopian/photo_2026-06-20_01-27-07.jpg' },
       { top:  38, right: 220, w: 215, h: 264, rot:  4, z: 2, src: '/Ethiopian/photo_2026-06-20_01-27-15.jpg' },
@@ -65,7 +65,7 @@ const HOBBIES: {
     eyebrow: 'photography',
     title: 'Everything, ',
     titleEm: 'everyone',
-    body: "I take pictures of whatever is in front of me, mostly on my phone or my beat-up Canon digicam from the early 2000s. Slowed down a bit after getting my phone robbed mid-sunrise-photo, but I still can't help snapping things.",
+    body: "I take pictures of whatever is in front of me, mostly on my phone or my beat-up Canon digicam from the early 2000s. Though, I slowed down a bit after getting my phone robbed mid-sunrise-photo.",
     collage: [
       { top:  87, right:  59, w: 248, h: 297, rot:  6, z: 1, src: '/camera/photo_2026-06-20_02-31-32.jpg' },
       { top: 189, right: 211, w: 198, h: 248, rot: -4, z: 2, src: '/camera/photo_2026-06-20_02-32-00.jpg' },
@@ -79,7 +79,7 @@ const HOBBIES: {
     eyebrow: 'people & home',
     title: 'Hours on ',
     titleEm: 'the phone',
-    body: "My favorite hobby is a phone call that stretches for hours. Family scattered across time zones, siblings I'm mostly watching grow up through a screen, friends scattered across different universities with their own study-abroad stories (or uni-life crises.)",
+    body: "My favorite hobby is a phone call that stretches for hours. Family scattered across time zones, siblings I'm mostly watching grow up through a screen, friends across different colleges with their own study-abroad stories and uni-life crises.",
     collage: [
       { top:  87, right:  60, w: 231, h: 281, rot: -7, z: 1, src: '/HoursOnPhone/photo_2026-06-20_02-02-38.jpg' },
       { top: 199, right: 201, w: 190, h: 240, rot:  5, z: 2, src: '/HoursOnPhone/photo_2026-06-20_02-03-02.jpg' },
