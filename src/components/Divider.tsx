@@ -1,6 +1,6 @@
-export default function Divider({ compact = false }: { compact?: boolean }) {
+export default function Divider() {
   return (
-    <div style={{ backgroundColor: '#E8DCC8', padding: compact ? '8px 0' : '40px 0' }}>
+    <div style={{ backgroundColor: '#E8DCC8', padding: '40px 0' }}>
       <svg width="100%" height="40" viewBox="0 0 800 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
         <line x1="0" y1="20" x2="360" y2="20" stroke="#C8941A" strokeWidth="0.8" opacity="0.5"/>
         <circle cx="370" cy="20" r="2" fill="#C8941A" opacity="0.6"/>

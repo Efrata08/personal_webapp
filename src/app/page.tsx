@@ -17,7 +17,6 @@ export default function Home() {
       <About />
       <Divider />
       <Projects />
-      <Divider compact />
       <TechStack />
       <Divider />
       <Recognition />
