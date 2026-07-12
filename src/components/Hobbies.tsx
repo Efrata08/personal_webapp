@@ -51,7 +51,7 @@ const HOBBIES: {
     eyebrow: 'identity & roots',
     title: 'Ethiopia, ',
     titleEm: 'always',
-    body: "I grew up in Addis, streets full of people (and vendors), doro wat after long fasting seasons, sitting through the full coffee ceremony, kirar sessions with my sister. The communal holidays, the life we lead as together... it's something I will forever carry with me.",
+    body: "I grew up in Addis, streets full of people (and vendors), doro wat after long fasting seasons, sitting through the full coffee ceremony, kirar sessions with my sister. The communal holidays, the life we lead together — it's something I will forever carry with me.",
     collage: [
       { top:  65, right:  58, w: 264, h: 330, rot: -5, z: 1, src: '/Ethiopian/photo_2026-06-20_01-27-07.jpg' },
       { top:  38, right: 220, w: 215, h: 264, rot:  4, z: 2, src: '/Ethiopian/photo_2026-06-20_01-27-15.jpg' },
