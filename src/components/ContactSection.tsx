@@ -150,17 +150,37 @@ export default function ContactSection() {
 
     const section = sectionRef.current;
     if (!section) return;
+    let isFirstCallback = true;
     const obs = new IntersectionObserver(([entry]) => {
+      // The observer's very first callback always reports the CURRENT state,
+      // not a scroll-triggered transition — if the browser restored the
+      // scroll position on refresh and the section is already in view, this
+      // would fire immediately instead of waiting for a real scroll. If that
+      // happens, skip straight to the perched end-state (no animation, same
+      // as the prefers-reduced-motion path above) and reserve the fly-in for
+      // an actual scroll from above into view.
+      if (isFirstCallback) {
+        isFirstCallback = false;
+        if (entry.isIntersecting) {
+          hasEntered.current = true;
+          setHawkPhase('perched');
+          setHawkMode('perched');
+          setIsFloating(false);
+          setShowGlow(true);
+          const el = hawkWrapRef.current;
+          if (el) { el.style.opacity = '1'; el.style.transform = 'none'; }
+          obs.disconnect();
+          return;
+        }
+      }
       if (entry.isIntersecting && !hasEntered.current) {
         hasEntered.current = true;
         flyIn();
         obs.disconnect();
       }
     }, { threshold: 0.1 });
-    // Delay observe by 100ms so the initial render position doesn't
-    // trigger an immediate "already intersecting" fire
-    const timer = setTimeout(() => obs.observe(section), 100);
-    return () => { clearTimeout(timer); obs.disconnect(); };
+    obs.observe(section);
+    return () => obs.disconnect();
   }, [flyIn]);
 
   /* ── form submit ── */
