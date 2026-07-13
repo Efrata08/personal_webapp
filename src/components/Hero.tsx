@@ -126,10 +126,21 @@ export default function Hero() {
           .hero-section { padding-right: 80px !important; }
         }
 
+        /* fill the spare margin at ordinary desktop widths — scaling the whole
+           grid as one unit means text, photo, and lanterns all grow together
+           without any of their relative positions shifting. Verified safe
+           starting at 1300px (comfortable margin to spare); below that the
+           grid already fills its available width edge-to-edge with no slack
+           to grow into. */
+        @media (min-width: 1300px) {
+          .hero-grid { transform: translateX(28px) scale(1.12); }
+        }
+
         /* the translateX+scale flourish only has room to breathe on very wide screens
-           (200px original nudge + the 28px whole-composition shift above) */
+           (200px original nudge + the 28px whole-composition shift above,
+           scaled up proportionally to the 1300px+ tier's 1.12x) */
         @media (min-width: 1700px) {
-          .hero-grid { transform: translateX(228px) scale(1.3); }
+          .hero-grid { transform: translateX(228px) scale(1.45); }
         }
 
         @keyframes flicker1 {

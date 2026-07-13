@@ -22,7 +22,7 @@ const PROJECTS = [
       "A civic reporting platform built at Drexel's Philly Codefest, with both a resident-facing app and a government dashboard so the reporting loop works end to end. Residents snap a photo of an issue and Gemini Vision AI classifies the type and severity, while a custom Haversine-distance algorithm checks it against 500K+ existing Philadelphia 311 cases to catch duplicates instead of clogging the queue. It also surfaces an equity heatmap showing which neighborhoods consistently wait longer for resolution, holding city officials accountable.",
     tags: ['React Native', 'Supabase', 'Gemini AI'],
     linkLabel: 'GitHub',
-    image: '/phixphilly/photo_2026-07-10_21-14-03.jpg',
+    image: '/phixphilly/screenshot.png',
   },
   {
     number: '03 / 04',
