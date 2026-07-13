@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 const PHRASES = [
-  'A builder.',
+  'A Builder.',
   'A founder.',
-  'A non-stop yapper.',
-  'A cheesy joker.',
-  'An Ethiopian.',
+  'A laughter lover.',
+  'An Overthinker.',
+  'A perpetual beta.',
 ];
 
 const BRASS_FILTER =
@@ -128,19 +128,23 @@ export default function Hero() {
 
         /* fill the spare margin at ordinary desktop widths — scaling the whole
            grid as one unit means text, photo, and lanterns all grow together
-           without any of their relative positions shifting. Verified safe
-           starting at 1300px (comfortable margin to spare); below that the
-           grid already fills its available width edge-to-edge with no slack
-           to grow into. */
-        @media (min-width: 1300px) {
+           without any of their relative positions shifting. Scoped to
+           1300–1499px specifically: the lanterns switch to bigger "wide"
+           values at 1500px (below), which were tuned assuming NO extra scale
+           until 1700px (where translateX also jumps to 228px to compensate) —
+           letting this scale bleed into 1500–1699px pushed those already-
+           tight wide-tier values past the safe margin and off-screen. */
+        @media (min-width: 1300px) and (max-width: 1499px) {
           .hero-grid { transform: translateX(28px) scale(1.12); }
         }
 
         /* the translateX+scale flourish only has room to breathe on very wide screens
-           (200px original nudge + the 28px whole-composition shift above,
-           scaled up proportionally to the 1300px+ tier's 1.12x) */
+           (200px original nudge + the 28px whole-composition shift above).
+           Reverted back to 1.3 — bumping it to 1.45 cut the lantern's safety
+           margin at this breakpoint down to a few px, which was part of the
+           same regression as the 1500–1699px gap above. */
         @media (min-width: 1700px) {
-          .hero-grid { transform: translateX(228px) scale(1.45); }
+          .hero-grid { transform: translateX(228px) scale(1.3); }
         }
 
         @keyframes flicker1 {

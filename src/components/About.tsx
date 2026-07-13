@@ -190,11 +190,11 @@ export default function About() {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                 <p style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontSize: 19, lineHeight: 1.95, color: '#5A4A38', margin: 0 }}>
-                  The one who pierced a ball filled with liquid just to find out what was inside. (Turns out it was water. Classic.) That curiosity naturally drew me toward STEM, where I found joy in asking questions, solving problems, and building things from scratch.
+                  The one who tore down a light-up bounced ball filled with liquid just to find out what was inside. (Turns out it was water. Classic.) That curiosity naturally drew me toward STEM, where I found joy in asking questions, solving problems, and building things from scratch.
                 </p>
 
                 <p style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontSize: 19, lineHeight: 1.95, color: '#5A4A38', margin: 0 }}>
-                  When I started high school, I was introduced to programming, and it didn&apos;t come naturally to me at first. But I stuck with it, put in the extra work to catch up, and spent enough late nights wrestling with bugs to eventually feel at home in tech.
+                  When I started high school, I was introduced to programming, and it didn&apos;t come naturally to me at first. But I stuck with it and put in the extra work to catch up to eventually feel at home in tech.
                 </p>
 
                 <p style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontSize: 19, lineHeight: 1.95, color: '#5A4A38', margin: 0 }}>
@@ -202,7 +202,7 @@ export default function About() {
                   <strong style={{ fontWeight: 400, color: '#0F2440' }}>
                     Computer Science and Mathematics
                   </strong>
-                  {' '}student at Bryn Mawr College. But long before I wrote my first line of code, I knew one thing: whatever I ended up doing, I wanted it to matter to the people who often get overlooked. That hasn&apos;t changed.
+                  {' '}student at Bryn Mawr College. But long before I started programming, I knew one thing about my future career; whatever I ended up doing, I wanted it to matter to the people who often get overlooked. That hasn&apos;t changed.
                 </p>
 
               </div>
