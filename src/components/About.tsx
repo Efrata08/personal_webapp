@@ -190,7 +190,7 @@ export default function About() {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                 <p style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontSize: 19, lineHeight: 1.95, color: '#5A4A38', margin: 0 }}>
-                  The one who tore down a light-up bounced ball filled with liquid just to find out what was inside. (Turns out it was water. Classic.) That curiosity naturally drew me toward STEM, where I found joy in asking questions, solving problems, and building things from scratch.
+                  The one who tore down a light-up bouncy ball filled with liquid just to find out what was inside. (Turns out it was water. Classic.) That curiosity naturally drew me toward STEM, where I found joy in asking questions, solving problems, and building things from scratch.
                 </p>
 
                 <p style={{ fontFamily: 'var(--font-lora), Georgia, serif', fontSize: 19, lineHeight: 1.95, color: '#5A4A38', margin: 0 }}>

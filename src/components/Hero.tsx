@@ -99,7 +99,7 @@ export default function Hero() {
            full size rather than shrinking to nothing; the tightest widths
            (768–1017px, where margin is a flat ~24px) will clip modestly. */
         .hero-lantern-1 { top: -26px;  left: -80px; width: 145px; }
-        .hero-lantern-2 { top: 190px;  left: -35px; width: 100px; }
+        .hero-lantern-2 { top: 190px;  left: -15px; width: 100px; }
 
         @media (min-width: 1500px) {
           .hero-lantern-1 { top: -44px; left: -230px; width: 184px; }
