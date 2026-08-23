@@ -122,6 +122,18 @@ export default function Hero() {
         @media (max-width: 375px) { .hero-photo-box { zoom: 0.65; } }
         @media (max-width: 340px) { .hero-photo-box { zoom: 0.58; } }
 
+        /* modest size bump on ordinary desktop widths — scoped to the ranges
+           where .hero-grid ISN'T already scaling everything up (1300–1499px
+           and 1700px+ already enlarge the whole composition, photo included;
+           adding this on top there would compound into a much bigger jump
+           than intended and risk overflow past the section edge). */
+        @media (min-width: 900px) and (max-width: 1299px) {
+          .hero-photo-box { transform: scale(1.12); }
+        }
+        @media (min-width: 1500px) and (max-width: 1699px) {
+          .hero-photo-box { transform: scale(1.12); }
+        }
+
         @media (min-width: 1400px) {
           .hero-section { padding-right: 80px !important; }
         }
