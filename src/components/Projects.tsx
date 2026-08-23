@@ -11,7 +11,10 @@ const PROJECTS = [
     description:
       "An offline-first inventory management platform for small independent pharmacies in Ethiopia, built through Haverford College's Innovation Incubator. It works entirely without internet, operates in Amharic, and is designed for low-end Android devices — owners can track stock, log sales, get low-stock alerts, and generate customer records in a single tap flow built for busy counters. Currently in the process of deploying and piloting it with real pharmacies in Ethiopia.",
     tags: ['React Native', 'Expo', 'TypeScript'],
-    linkLabel: 'GitHub',
+    links: [
+      { label: 'GitHub', url: 'https://github.com/Efrata08/Fa-ray' },
+      { label: 'Demo', url: 'https://drive.google.com/file/d/1v2MqCPKrLgfAEPs8pVAFbO559PXGWYQZ/view?usp=drive_link' },
+    ],
     image: '/fa-ray/screenshot.png',
   },
   {
@@ -21,7 +24,9 @@ const PROJECTS = [
     description:
       "A civic reporting platform built at Drexel's Philly Codefest, with both a resident-facing app and a government dashboard so the reporting loop works end to end. Residents snap a photo of an issue and Gemini Vision AI classifies the type and severity, while a custom Haversine-distance algorithm checks it against 500K+ existing Philadelphia 311 cases to catch duplicates instead of clogging the queue. It also surfaces an equity heatmap showing which neighborhoods consistently wait longer for resolution, holding city officials accountable.",
     tags: ['React Native', 'Supabase', 'Gemini AI'],
-    linkLabel: 'GitHub',
+    links: [
+      { label: 'GitHub', url: 'https://github.com/kashafbatool/phixphilly' },
+    ],
     image: '/phixphilly/screenshot.png',
   },
   {
@@ -31,7 +36,9 @@ const PROJECTS = [
     description:
       "An all-in-one roommate coordination app built at the Trico Protothon. Instead of juggling a separate calendar app, a Splitwise, a group chat, and sticky notes on the fridge, Room8 brings it all into one place. It features shared calendars for chores and events (including guest scheduling), expense splitting for shared costs, and a digital shared fridge with sticky notes.",
     tags: ['Swift', 'SwiftUI'],
-    linkLabel: 'Demo',
+    links: [
+      { label: 'GitHub', url: 'https://github.com/Efrata08/Room8' },
+    ],
     image: '/room8/dashboard-calendar.png',
   },
   {
@@ -41,7 +48,9 @@ const PROJECTS = [
     description:
       "Built a background script that automates the working pipeline of Haverford College's alumni office, which was manually checking hundreds of emails a week against Raiser's Edge and logging sentiment by hand. The script pulls emails through the Gmail API, filters out routine noise, then classifies sentiment and giving status (paused, resumed, bequest changes) using DistilBERT and BART for zero-shot classification. Results upload to Google Sheets automatically, along with a weekly trend summary.",
     tags: ['Python', 'PyTorch'],
-    linkLabel: 'GitHub',
+    links: [
+      { label: 'GitHub', url: 'https://github.com/kashafbatool/alumni-feedback-sorter' },
+    ],
     image: '/alumni/dashboard.png',
   },
 ];
@@ -80,6 +89,14 @@ export default function Projects() {
         .projects-section.projects-visible {
           opacity: 1;
           transform: translateY(0);
+        }
+        .project-link-pill {
+          transition: background 0.2s ease, color 0.2s ease;
+          display: inline-block;
+        }
+        .project-link-pill:hover {
+          background: #D4A020;
+          color: #E8DCC8 !important;
         }
         .nav-arrow {
           width: 36px;
@@ -288,16 +305,26 @@ export default function Projects() {
                           {tag}
                         </span>
                       ))}
-                      <span style={{
-                        fontFamily: 'var(--font-lora), Georgia, serif',
-                        fontSize: 12,
-                        border: '1px solid #D4A020',
-                        padding: '4px 12px',
-                        borderRadius: 20,
-                        color: '#D4A020',
-                      }}>
-                        {project.linkLabel}
-                      </span>
+                      {project.links.map(link => (
+                        <a
+                          key={link.label}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-link-pill"
+                          style={{
+                            fontFamily: 'var(--font-lora), Georgia, serif',
+                            fontSize: 12,
+                            border: '1px solid #D4A020',
+                            padding: '4px 12px',
+                            borderRadius: 20,
+                            color: '#D4A020',
+                            textDecoration: 'none',
+                          }}
+                        >
+                          {link.label}
+                        </a>
+                      ))}
                     </div>
                   </div>
 
