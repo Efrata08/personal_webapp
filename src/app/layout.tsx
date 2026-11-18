@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Lora } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -31,7 +32,10 @@ export default function RootLayout({
       lang="en"
       className={`${playfairDisplay.variable} ${lora.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
